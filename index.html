@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#f7f8fc" />
+    <title>Ôn Tin 12 — Học vui, nhớ lâu</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="top">
+        <button class="back-btn" id="backButton" type="button" aria-label="Quay lại trang trước" title="Quay lại trang trước" disabled>← <span>Quay lại</span></button>
+        <div class="logo">12</div>
+        <div class="brand">
+          Lớp học số<small>TIN HỌC 12 · ÔN TẬP GIỮA KÌ</small>
+        </div>
+        <div class="top-right">
+          <span class="pill">✦ Học theo cách của bạn</span>
+          <button class="profile-trigger" id="nameTrigger" type="button"><span class="avatar">🧑‍🎓</span><span id="profileLabel">Nhập tên</span></button>
+        </div>
+      </header>
+      <div class="layout">
+        <aside class="side">
+          <div class="eyebrow">KHÔNG GIAN HỌC TẬP</div>
+          <nav class="nav">
+            <button class="active" data-page="home">
+              <span class="ico">⌂</span>Tổng quan</button
+            ><button data-page="library">
+              <span class="ico">▤</span>Ngân hàng câu hỏi</button
+            ><button data-page="practice">
+              <span class="ico">✎</span>Hỏi & ôn bài</button
+            ><button data-page="quiz">
+              <span class="ico">⚡</span>Thử thách quiz
+            </button>
+            <button data-page="ranking" id="rankNav">
+              <span class="ico">🏆</span>Bảng xếp hạng
+            </button>
+            <button data-page="answers" id="answersNav" hidden><span class="ico">📖</span>Đáp án</button>
+          </nav>
+          <div class="side-note">
+            📘 <b>Nguồn ôn tập</b><br />Đề cương Tin học lớp 12 trong thư mục
+            web3. Câu đúng/sai lấy đáp án trực tiếp từ tài liệu.
+          </div>
+        </aside>
+        <main class="main">
+          <section class="hero">
+          <div class="tag" id="welcomeTag">CHÀO MỪNG BẠN TRỞ LẠI 👋</div>
+            <h1>Học chắc kiến thức.<br />Vào quiz là tự tin.</h1>
+            <p>
+              Ôn tập Tin học lớp 12 theo từng chủ đề, hỏi nhanh điều bạn chưa
+              hiểu và thử sức với quiz tính điểm.
+            </p>
+            <div class="hero-stats">
+              <div class="stat">
+                <b id="totalStat">0</b><span>CÂU ÔN TẬP</span>
+              </div>
+              <div class="stat"><b>04</b><span>CHỦ ĐỀ CHÍNH</span></div>
+              <div class="stat">
+                <b id="bestStat">—</b><span>ĐIỂM CAO NHẤT</span>
+              </div>
+            </div>
+          </section>
+          <section id="home" class="page show">
+            <div class="section-head">
+              <div>
+                <h2>Chọn chủ đề để bắt đầu</h2>
+                <p>Những kiến thức trọng tâm trong đề cương của bạn</p>
+              </div>
+              <button class="link-btn" data-go="library">
+                Xem ngân hàng →
+              </button>
+            </div>
+            <div class="cards" id="topicCards"></div>
+            <div class="section-head">
+              <div>
+                <h2>Học và luyện ngay</h2>
+                <p>Giải đáp nhanh hoặc bật chế độ thử thách</p>
+              </div>
+            </div>
+            <div class="tools">
+              <div class="tool">
+                <h3>💬 Hỏi đáp Tin học</h3>
+                <p class="desc">
+                  Nhập câu hỏi hoặc chọn gợi ý. Trợ lý sẽ tìm kiến thức liên
+                  quan trong đề cương và giải thích ngắn gọn.
+                </p>
+                <div class="ask-row">
+                  <input
+                    id="askInput"
+                    placeholder="Ví dụ: Switch khác hub như thế nào?"
+                  /><button class="primary" id="askBtn">Hỏi ngay</button>
+                </div>
+                <div class="quick">
+                  <button>TCP dùng để làm gì?</button
+                  ><button>Địa chỉ IP là gì?</button
+                  ><button>Chia sẻ thư mục thế nào?</button>
+                </div>
+                <div class="answer-box" id="answerBox"></div>
+                <a
+                  class="chat-link"
+                  href="https://chatgpt.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Mu?n trao ??i th?m? M? ChatGPT ?</a
+                >
+              </div>
+              <div class="tool quiz-launch" id="launchQuiz">
+                <h3>⚡ Sẵn sàng thử thách?</h3>
+                <p>
+                  Trả lời nhanh, tích lũy điểm và xem kết quả ngay sau mỗi câu.
+                </p>
+                <span><button>Bắt đầu chơi&nbsp; →</button></span>
+              </div>
+            </div>
+          </section>
+          <section id="library" class="page">
+            <div class="section-head">
+              <div>
+                <h2>Ngân hàng câu hỏi</h2>
+                <p>Tìm kiếm và lọc nội dung từ tài liệu ôn tập</p>
+              </div>
+              <span class="subtle" id="libraryCount"></span>
+            </div>
+            <div class="search-wrap">
+              <input
+                class="search"
+                id="searchInput"
+                placeholder="⌕  Tìm câu hỏi, chủ đề..."
+              /><select class="filter" id="topicFilter">
+                <option value="all">Tất cả chủ đề</option></select
+              ><select class="filter" id="typeFilter">
+                <option value="all">Mọi dạng câu hỏi</option>
+                <option value="tf">Đúng / Sai</option>
+                <option value="mc">Trắc nghiệm</option>
+              </select>
+            </div>
+            <div class="question-list" id="questionList"></div>
+          </section>
+          <section id="practice" class="page">
+            <div class="section-head">
+              <div>
+                <h2>Hỏi & ôn bài</h2>
+                <p>
+                  Gõ câu hỏi bằng lời của bạn — hệ thống tra cứu trong kiến thức
+                  Tin 12.
+                </p>
+              </div>
+            </div>
+            <div class="tool">
+              <h3>💡 Bạn đang thắc mắc điều gì?</h3>
+              <p class="desc">
+                Câu trả lời dựa trên nội dung tài liệu và các khái niệm chính.
+                Hãy thử hỏi về mạng máy tính, giao thức, chia sẻ tài nguyên hoặc
+                AI.
+              </p>
+              <div class="ask-row">
+                <input
+                  id="askInput2"
+                  placeholder="Nhập câu hỏi của bạn..."
+                /><button class="primary" id="askBtn2">Giải thích</button>
+              </div>
+              <div class="quick">
+                <button>Hub và switch khác nhau thế nào?</button
+                ><button>DNS có vai trò gì?</button
+                ><button>AI hẹp là gì?</button
+                ><button>Quyền Read cho phép làm gì?</button>
+              </div>
+              <div class="answer-box" id="answerBox2"></div>
+              <a
+                class="chat-link"
+                href="https://chatgpt.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >M? ChatGPT ?? h?i th?m ?</a
+              >
+            </div>
+            <div class="section-head">
+              <div>
+                <h2>Gợi ý ôn nhanh</h2>
+                <p>Các khái niệm thường gặp trong đề cương</p>
+              </div>
+            </div>
+            <div class="cards" id="studyCards"></div>
+          </section>
+          <section id="quiz" class="page"><div class="section-head"><div><h2>Ch&#x01A1;i to&#x00E0;n b&#x1ED9; c&#x00E2;u h&#x1ECF;i</h2><p>&#x0110;&#x00FA;ng/sai v&#x00E0; tr&#x1EAF;c nghi&#x1EC7;m &#x0111;&#x01B0;&#x1EE3;c x&#x00E1;o chung trong m&#x1ED9;t l&#x01B0;&#x1EE3;t ch&#x01A1;i.</p></div></div><div class="cards"><div class="card"><div class="topic-icon">&#127919;</div><h3>To&#x00E0;n b&#x1ED9; &#x0111;&#x1EC1; c&#x01B0;&#x01A1;ng</h3><p>Ch&#417;i h&#7871;t c&#225;c nh&#243;m &#273;&#250;ng/sai (4 &#253; m&#7897;t nh&#243;m) c&#249;ng t&#7845;t c&#7843; c&#226;u tr&#7855;c nghi&#7879;m trong file &#244;n t&#7853;p.</p><div class="topic-foot"><span id="quizTotal">To&#x00E0;n b&#x1ED9; ng&#x00E2;n h&#x00E0;ng</span><button class="link-btn" id="fullQuiz">B&#x1EAF;t &#x0111;&#x1EA7;u ch&#x01A1;i &#x2192;</button></div></div></div><div class="tool" style="margin-top:15px"><h3>&#127942; Th&#x00E0;nh t&#x00ED;ch g&#x1EA7;n &#x0111;&#x00E2;y</h3><p class="desc" id="historyText">Ch&#x01B0;a c&#243; l&#432;&#7907;t ch&#417;i n&#224;o. Ho&#224;n th&#224;nh quiz &#273;&#7847;u ti&#234;n &#273;&#7875; ghi l&#7841;i th&#224;nh t&#237;ch.</p><div id="historyList"></div></div></section>
+          <section id="ranking" class="page">
+            <div class="section-head">
+              <div><h2>Bảng xếp hạng</h2><p>Xếp theo điểm cao nhất sau khi hoàn thành toàn bộ câu hỏi.</p></div>
+              <button class="secondary" id="clearRanking" type="button">Xóa bảng</button>
+            </div>
+            <div class="leaderboard-wrap">
+              <table class="leaderboard">
+                <thead><tr><th>Hạng</th><th>Người chơi</th><th>ID</th><th>Điểm cao nhất</th><th>Tỉ lệ</th><th>Ngày đạt</th></tr></thead>
+                <tbody id="leaderboardBody"></tbody>
+              </table>
+              <div class="empty" id="leaderboardEmpty">Chưa có điểm nào. Hãy chơi một lượt quiz để ghi tên lên bảng.</div>
+            </div>
+            <p class="rank-note">Chỉ lượt hoàn thành toàn bộ ngân hàng mới được ghi điểm. Bảng lưu trên thiết bị này.</p>
+          </section>
+          <section id="answers" class="page">
+            <div class="section-head"><div><h2>Đáp án đề cương</h2><p>Dành cho quản trị viên.</p></div></div>
+            <div id="adminAnswers" class="answer-review"></div>
+          </section>
+          <div class="footer">
+            Nội dung học tập được tổng hợp từ tài liệu ôn tập có trong thư mục
+            <b>web3</b>.<br />Kết quả lưu trên trình duyệt của thiết bị này.
+          </div>
+        </main>
+      </div>
+    </div>
+    <div class="modal" id="profileModal" aria-hidden="true">
+      <form class="profile-box" id="profileForm">
+        <div class="quiz-top"><span class="quiz-brand">HỒ SƠ NGƯỜI HỌC</span><button class="close" id="profileClose" type="button" aria-label="Đóng">×</button></div>
+        <label for="nameInput">Tên của bạn</label>
+        <input id="nameInput" name="name" maxlength="40" autocomplete="name" placeholder="Nhập tên để cá nhân hóa trang học" required>
+        <label for="idInput">ID học sinh</label>
+        <input id="idInput" name="studentId" maxlength="24" autocomplete="off" placeholder="Nhập ID của bạn" required>
+        <div class="profile-actions"><button class="secondary" id="profileCancel" type="button">Để sau</button><button class="primary" type="submit">Lưu tên</button></div>
+      </form>
+    </div>
+    <div class="modal" id="quizModal">
+      <div class="quiz" id="quizBox"></div>
+    </div>
+    <div class="toast" id="toast"></div>
+    <script src="questions-tf.js"></script>
+    <script src="questions-mc.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
