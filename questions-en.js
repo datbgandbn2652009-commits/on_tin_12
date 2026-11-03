@@ -120,6 +120,11 @@ window.EN_ANSWER_VI = {
   "information": "thông tin",
   "mix": "trộn",
   "in": "trong",
+  "for": "cho / để; chờ hoặc chịu trách nhiệm về trong các cụm wait for, responsible for",
+  "on": "trên; thống nhất về trong cụm agree on",
+  "to": "đến; đề cập đến trong cụm refer to",
+  "up": "lên; dọn sạch trong cụm clean up",
+  "ø": "không dùng mạo từ",
   "read": "đã đọc",
   "was watching": "đang xem",
   "made": "đã tạo / thực hiện",
@@ -127,6 +132,7 @@ window.EN_ANSWER_VI = {
   "inspiration": "nguồn cảm hứng",
   "a": "một (đứng trước âm phụ âm)",
   "the": "mạo từ xác định; cái/người đã được xác định",
+  "The": "mạo từ xác định; cái/người đã được xác định",
   "Ø": "không dùng mạo từ",
   "an": "một (đứng trước âm nguyên âm)",
   "mind": "tâm trí / suy nghĩ",
@@ -167,7 +173,52 @@ const enShortVi = [
   "Chúng ta quan tâm đến môi trường địa phương.", "Vui lòng chờ xe tải tái chế.", "Nhóm đã thống nhất về một giải pháp.", "Bạn có thể tận dụng bìa các-tông cũ.", "Ai chịu trách nhiệm phân loại rác sinh hoạt?", "Các tình nguyện viên đã dọn sạch bãi biển.", "Bài báo đề cập đến ô nhiễm nhựa.", "Chúng ta nên loại bỏ túi dùng một lần.",
   "Học sinh mang bình có thể tái sử dụng. Điều này làm giảm rác thải nhựa.", "Câu lạc bộ tổ chức chuyến du lịch sinh thái. Điều này nâng cao nhận thức về môi trường.", "Nhà máy xả chất ô nhiễm xuống sông. Điều này rất nguy hiểm.", "Chúng tôi dùng vòi nước cảm biến trong phòng tắm. Điều này tiết kiệm nước.", "Cộng đồng bắt đầu chương trình tái chế. Điều này khuyến khích người dân địa phương.", "Anh ấy vứt chiếc túi có thể tái sử dụng. Điều đó thật lãng phí."
 ];
+const enShortOptions = [
+  ["was reading", "read", "is reading", "has read"],
+  ["joined", "was joining", "joins", "join"],
+  ["was walking", "walked", "is walking", "has walked"],
+  ["visited", "was visiting", "visits", "visit"],
+  ["were watching", "watched", "are watching", "watch"],
+  ["did not go", "did not went", "was not go", "does not go"],
+  ["was cooking", "cooked", "is cooking", "cooks"],
+  ["Did you meet", "Do you meet", "Did you met", "Were you meet"],
+  ["made", "make", "was making", "makes"],
+  ["were talking", "talked", "are talking", "talk"],
+  ["an", "a", "the", "Ø"],
+  ["a; the", "the; a", "an; the", "a; a"],
+  ["Ø", "a", "an", "the"],
+  ["the", "a", "an", "Ø"],
+  ["Ø", "a", "an", "the"],
+  ["the", "a", "an", "Ø"],
+  ["an", "a", "the", "Ø"],
+  ["the", "a", "an", "Ø"],
+  ["Ø", "a", "an", "the"],
+  ["an", "a", "the", "Ø"],
+  ["a", "an", "the", "Ø"],
+  ["the", "a", "an", "Ø"],
+  ["about", "for", "on", "to"],
+  ["for", "about", "on", "to"],
+  ["on", "in", "at", "for"],
+  ["of", "for", "about", "to"],
+  ["for", "of", "to", "with"],
+  ["up", "out", "off", "away"],
+  ["to", "for", "about", "on"],
+  ["of", "off", "from", "about"],
+  ["Students bring reusable bottles, which reduces plastic waste.", "Students bring reusable bottles, who reduces plastic waste.", "Students bring reusable bottles, which reduce plastic waste.", "Students bring reusable bottles that, reduces plastic waste."],
+  ["Our club organised an ecotour, which raised environmental awareness.", "Our club organised an ecotour, who raised environmental awareness.", "Our club organised an ecotour which, raised environmental awareness.", "Our club organised an ecotour, which raise environmental awareness."],
+  ["The factory released pollutants into the river, which was dangerous.", "The factory released pollutants into the river, who was dangerous.", "The factory released pollutants into the river which, was dangerous.", "The factory released pollutants into the river, which were dangerous."],
+  ["We use sensor taps in the bathrooms, which saves water.", "We use sensor taps in the bathrooms, who saves water.", "We use sensor taps in the bathrooms which, saves water.", "We use sensor taps in the bathrooms, which save water."],
+  ["The community started a recycling programme, which encouraged local people.", "The community started a recycling programme, who encouraged local people.", "The community started a recycling programme which, encouraged local people.", "The community started a recycling programme, which encourage local people."],
+  ["He threw away a reusable bag, which was wasteful.", "He threw away a reusable bag, who was wasteful.", "He threw away a reusable bag which, was wasteful.", "He threw away a reusable bag, which were wasteful."]
+];
+const enShortMc = enShort.map(([t, q, answers], i) => {
+  const correctIndex = i % 4;
+  const choices = [...enShortOptions[i]];
+  const correct = choices.shift();
+  choices.splice(correctIndex, 0, correct);
+  return { t, q, c: choices, a: correctIndex, tv: enShortVi[i], type: "mc", e: "Answer key from TH_TA_UNIT_123." };
+});
 window.EN_DATA = [
   ...enMc.map(([t, q, c, a], i) => ({ t, q, c, a, tv: enMcVi[i], type: "mc", e: "Answer key from TH_TA_UNIT_123." })),
-  ...enShort.map(([t, q, a], i) => ({ t, q, a, tv: enShortVi[i], type: "short", e: "Answer key from TH_TA_UNIT_123." })),
+  ...enShortMc,
 ];

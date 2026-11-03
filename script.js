@@ -109,7 +109,7 @@ function setupTopics() {
     .join("");
   document.getElementById("topicFilter").innerHTML = '<option value="all">Tất cả chủ đề</option>' + opts;
   document.getElementById("quizTotal").textContent =
-    `${allQuestions.length} câu/nhóm trộn chung`;
+    currentSubject === "en" ? `${allQuestions.length} c\u00e2u tr\u1eafc nghi\u1ec7m A/B/C/D` : `${allQuestions.length} c\u00e2u/nh\u00f3m tr\u1ed9n chung`;
   document.getElementById("totalStat").textContent = allQuestions.length;
   document.querySelector(".brand small").textContent = !subjectSelected ? "CHỌN MÔN HỌC" : currentSubject === "tin" ? "TIN HỌC 12 · ÔN TẬP GIỮA KÌ" : currentSubject === "bio" ? "SINH HỌC 12 · ÔN TẬP GIỮA KÌ" : "TIẾNG ANH 12 · UNIT 1–3";
   document.getElementById("activeCourseLabel").textContent = currentSubject === "tin" ? "Đang học: Ôn tập GK1 Tin học 12" : currentSubject === "bio" ? "Đang học: Ôn tập GK1 Sinh học 12" : "Đang học: Ôn tập Tiếng Anh 12 · Unit 1–3";
@@ -133,7 +133,7 @@ function setupTopics() {
   document.querySelector("#practice .quick").innerHTML = currentSubject === "tin"
     ? "<button>Hub và switch khác nhau thế nào?</button><button>DNS có vai trò gì?</button><button>AI hẹp là gì?</button><button>Quyền Read cho phép làm gì?</button>"
     : currentSubject === "bio" ? "<button>DNA và RNA khác nhau thế nào?</button><button>Đột biến gene là gì?</button><button>Nhiễm sắc thể có cấu trúc thế nào?</button><button>Lai phân tích dùng để làm gì?</button>" : "<button>What does ‘biography’ mean?</button><button>Complete: she ___ (read) at 9 p.m.</button><button>Use the correct article: ___ UK</button>";
-  document.querySelector('#typeFilter option[value="mc"]').textContent = currentSubject === "tin" ? "Trắc nghiệm" : "Trắc nghiệm / Trả lời ngắn";
+  document.querySelector('#typeFilter option[value="mc"]').textContent = currentSubject === "bio" ? "Tr\u1eafc nghi\u1ec7m / Tr\u1ea3 l\u1eddi ng\u1eafn" : "Tr\u1eafc nghi\u1ec7m A / B / C / D";
   document.getElementById("courseNav").hidden = !subjectSelected;
   const vocabularyNav = document.getElementById("vocabularyNav");
   if (vocabularyNav) vocabularyNav.hidden = currentSubject !== "en";
@@ -887,7 +887,9 @@ function renderAllAnswers(targetId, questions = allQuestions) {
   if (currentSubject === "en") {
     el.innerHTML = questions.map((q, i) => {
       const english = q.type === "short" ? (Array.isArray(q.a) ? q.a[0] : q.a) : q.c[q.a];
-      const vietnamese = window.EN_ANSWER_VI?.[english] || "chưa có nghĩa tiếng Việt";
+      const answerKey = String(english).replace(/[.!?]+$/, "");
+      const meanings = window.EN_ANSWER_VI || {};
+      const vietnamese = meanings[english] || meanings[answerKey] || meanings[answerKey.toLocaleLowerCase("en")] || "ch\u01b0a c\u00f3 ngh\u0129a ti\u1ebfng Vi\u1ec7t";
       return `<article class="review-item"><h3>Câu ${i + 1} · ${esc(q.t)}</h3><p class="english-original"><b>Question:</b> ${esc(q.q)}</p><p class="english-translation"><b>Nghĩa:</b> ${esc(q.tv || "")}</p><p class="review-correct"><b>Answer:</b> ${esc(english)} <span>(${esc(vietnamese)})</span></p></article>`;
     }).join("");
     return;
