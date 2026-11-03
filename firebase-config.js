@@ -2,5 +2,7 @@
 // Firebase's Web API key is public; never put a service-account key here.
 window.FIREBASE_CONFIG = {
   apiKey: "AIzaSyDDeRHjMiktEXcke80S73uIS-_AH7z2KWc",
+  authDomain: "lop-hoc-so-12.firebaseapp.com",
+  projectId: "lop-hoc-so-12",
   databaseURL: "https://lop-hoc-so-12-default-rtdb.asia-southeast1.firebasedatabase.app",
 };

@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="theme-color" content="#f7f8fc" />
-    <title>Ôn Tin 12 — Học vui, nhớ lâu</title>
+    <title>Ôn tập GK1 · Tin học 12 và Sinh học 12</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -24,44 +24,52 @@
         <aside class="side">
           <div class="eyebrow">KHÔNG GIAN HỌC TẬP</div>
           <nav class="nav">
-            <button class="active" data-page="home">
-              <span class="ico">⌂</span>Tổng quan</button
-            ><button data-page="library">
-              <span class="ico">▤</span>Ngân hàng câu hỏi</button
-            ><button data-page="practice">
-              <span class="ico">✎</span>Hỏi & ôn bài</button
-            ><button data-page="quiz">
-              <span class="ico">⚡</span>Thử thách quiz
-            </button>
-            <button data-page="ranking" id="rankNav">
-              <span class="ico">🏆</span>Bảng xếp hạng
-            </button>
-            <button data-page="answers" id="answersNav" hidden><span class="ico">📖</span>Đáp án</button>
+            <div class="overview-nav-group">
+              <button class="active" data-page="home"><span class="ico">⌂</span>Tổng quan</button>
+              <div class="subject-nav" aria-label="Chọn môn học">
+                <button type="button" data-subject="tin"><span>💻</span>Tin học 12</button>
+                <button type="button" data-subject="bio"><span>🧬</span>Sinh học 12</button>
+                <button type="button" data-subject="en"><span>🇬🇧</span>Tiếng Anh 12</button>
+              </div>
+            </div>
+            <div id="courseNav" class="course-nav" hidden>
+              <div class="course-nav-title" id="courseNavTitle">ÔN TẬP GK1</div>
+              <button data-page="course"><span class="ico">⌂</span>Môn học</button>
+              <button data-page="vocabulary" id="vocabularyNav" hidden><span class="ico">📚</span>Từ vựng Unit 1–3</button>
+              <button data-page="library"><span class="ico">▤</span>Ngân hàng câu hỏi</button>
+              <button data-page="practice"><span class="ico">✎</span>Hỏi & ôn bài</button>
+              <button data-page="quiz"><span class="ico">⚡</span>Thử thách quiz</button>
+              <button data-page="ranking" id="rankNav"><span class="ico">🏆</span>Bảng xếp hạng</button>
+              <button data-page="answers" id="answersNav" hidden><span class="ico">📖</span>Đáp án</button>
+              <button data-page="adminUsers" id="adminUsersNav" hidden><span class="ico">♙</span>Quản lý tài khoản</button>
+            </div>
           </nav>
-          <div class="side-note">
+          <div class="side-note" id="sideNote" hidden>
             📘 <b>Nguồn ôn tập</b><br />Đề cương Tin học lớp 12 trong thư mục
             web3. Câu đúng/sai lấy đáp án trực tiếp từ tài liệu.
           </div>
         </aside>
         <main class="main">
-          <section class="hero">
-          <div class="tag" id="welcomeTag">CHÀO MỪNG BẠN TRỞ LẠI 👋</div>
-            <h1>Học chắc kiến thức.<br />Vào quiz là tự tin.</h1>
-            <p>
-              Ôn tập Tin học lớp 12 theo từng chủ đề, hỏi nhanh điều bạn chưa
-              hiểu và thử sức với quiz tính điểm.
-            </p>
-            <div class="hero-stats">
-              <div class="stat">
-                <b id="totalStat">0</b><span>CÂU ÔN TẬP</span>
-              </div>
-              <div class="stat"><b>04</b><span>CHỦ ĐỀ CHÍNH</span></div>
-              <div class="stat">
-                <b id="bestStat">—</b><span>ĐIỂM CAO NHẤT</span>
-              </div>
+          <section id="home" class="page show">
+            <div class="section-head course-heading"><div><h2>Môn học</h2><p>Chọn một môn để mở không gian ôn tập riêng.</p></div></div>
+            <div class="course-grid" id="courseGrid">
+              <article class="course-card course-tin"><div class="course-icon">💻</div><div><span class="course-kicker">ÔN TẬP GIỮA KÌ 1</span><h2>Tin học 12</h2><p>90 câu · Quiz, ôn bài và bảng xếp hạng riêng</p></div><button type="button" class="primary" data-subject="tin">Vào môn học →</button></article>
+              <article class="course-card course-bio"><div class="course-icon">🧬</div><div><span class="course-kicker">ÔN TẬP GIỮA KÌ 1</span><h2>Sinh học 12</h2><p>74 câu · 50 trắc nghiệm, 10 nhóm đúng/sai, 14 câu trả lời ngắn</p></div><button type="button" class="primary" data-subject="bio">Vào môn học →</button></article>
+              <article class="course-card course-en"><div class="course-icon">🇬🇧</div><div><span class="course-kicker">ÔN TẬP UNIT 1–3</span><h2>Tiếng Anh 12</h2><p>84 câu · Từ vựng, ngữ pháp, điền đáp án và đề tổng hợp</p></div><button type="button" class="primary" data-subject="en">Vào môn học →</button></article>
             </div>
           </section>
-          <section id="home" class="page show">
+          <section id="course" class="page">
+            <div class="active-course" id="activeCourseLabel"></div>
+            <section class="hero">
+              <div class="tag" id="welcomeTag">CHÀO MỪNG BẠN TRỞ LẠI 👋</div>
+              <h1>Học chắc kiến thức.<br>Vào quiz là tự tin.</h1>
+              <p>Ôn tập theo từng chủ đề, hỏi nhanh điều bạn chưa hiểu và thử sức với quiz tính điểm.</p>
+              <div class="hero-stats">
+                <div class="stat"><b id="totalStat">0</b><span>CÂU ÔN TẬP</span></div>
+                <div class="stat"><b>04</b><span>CHỦ ĐỀ CHÍNH</span></div>
+                <div class="stat"><b id="bestStat">—</b><span>ĐIỂM CAO NHẤT</span></div>
+              </div>
+            </section>
             <div class="section-head">
               <div>
                 <h2>Chọn chủ đề để bắt đầu</h2>
@@ -80,7 +88,7 @@
             </div>
             <div class="tools">
               <div class="tool">
-                <h3>💬 Hỏi đáp Tin học</h3>
+                <h3 id="courseAskTitle">💬 Hỏi đáp Tin học</h3>
                 <p class="desc">
                   Nhập câu hỏi hoặc chọn gợi ý. Trợ lý sẽ tìm kiến thức liên
                   quan trong đề cương và giải thích ngắn gọn.
@@ -113,6 +121,11 @@
                 <span><button>Bắt đầu chơi&nbsp; →</button></span>
               </div>
             </div>
+          </section>
+          <section id="vocabulary" class="page">
+            <div class="section-head"><div><h2>Kho từ vựng Unit 1–3</h2><p>Trọn bộ từ đơn, cụm từ và họ từ trong tài liệu ôn tập, kèm phiên âm và nghĩa tiếng Việt.</p></div><span class="subtle" id="vocabularyCount"></span></div>
+            <div class="vocab-tools"><input id="vocabularySearch" type="search" placeholder="Tìm từ, phiên âm hoặc nghĩa tiếng Việt..."><select id="vocabularyUnit"><option value="all">Tất cả Unit</option><option value="Unit 1">Unit 1 · Life Stories We Admire</option><option value="Unit 2">Unit 2 · A Multicultural World</option><option value="Unit 3">Unit 3 · Green Living</option></select></div>
+            <div class="vocab-groups" id="vocabularyGroups"></div>
           </section>
           <section id="library" class="page">
             <div class="section-head">
@@ -203,22 +216,55 @@
             <div class="section-head"><div><h2>Đáp án đề cương</h2><p>Dành cho quản trị viên.</p></div></div>
             <div id="adminAnswers" class="answer-review"></div>
           </section>
+          <section id="adminUsers" class="page">
+            <div class="section-head"><div><h2>Thông tin người đăng ký</h2><p>Chỉ quản trị viên xem được. Mật khẩu không được lưu hoặc hiển thị tại đây.</p></div><button class="secondary" id="refreshUsers" type="button">Tải lại</button></div>
+            <p id="adminUsersStatus" class="rank-note" aria-live="polite"></p>
+            <div class="leaderboard-wrap admin-users-wrap"><table class="leaderboard admin-users-table"><thead><tr><th>ID</th><th>Họ và tên</th><th>Lớp</th><th>Email</th><th>UID tài khoản</th><th>Ngày đăng ký</th></tr></thead><tbody id="adminUsersBody"></tbody></table><div class="empty" id="adminUsersEmpty" hidden>Chưa có tài khoản nào.</div></div>
+          </section>
           <div class="footer">
-            Nội dung học tập được tổng hợp từ tài liệu ôn tập có trong thư mục
-            <b>web3</b>.<br />Kết quả lưu trên trình duyệt của thiết bị này.
+            Nội dung ôn tập được tổng hợp từ ngân hàng câu hỏi Tin học và tài liệu
+            Sinh học 12.<br />Kết quả được lưu theo từng môn học.
           </div>
         </main>
       </div>
     </div>
     <div class="modal" id="profileModal" aria-hidden="true">
-      <form class="profile-box" id="profileForm">
-        <div class="quiz-top"><span class="quiz-brand">HỒ SƠ NGƯỜI HỌC</span><button class="close" id="profileClose" type="button" aria-label="Đóng">×</button></div>
-        <label for="nameInput">Tên của bạn</label>
-        <input id="nameInput" name="name" maxlength="40" autocomplete="name" placeholder="Nhập tên để cá nhân hóa trang học" required>
-        <label for="idInput">ID học sinh</label>
-        <input id="idInput" name="studentId" maxlength="24" autocomplete="off" placeholder="Nhập ID của bạn" required>
-        <div class="profile-actions"><button class="secondary" id="profileCancel" type="button">Để sau</button><button class="primary" type="submit">Lưu tên</button></div>
-      </form>
+      <div class="auth-panel">
+        <div class="quiz-top"><span class="quiz-brand">T&#192;I KHO&#7842;N H&#7884;C SINH</span><button class="close" id="profileClose" type="button" aria-label="&#272;&#243;ng">&times;</button></div>
+        <div id="authForms">
+          <div class="auth-tabs"><button type="button" class="active" data-auth-view="register">&#272;&#259;ng k&#253;</button><button type="button" data-auth-view="login">&#272;&#259;ng nh&#7853;p</button></div>
+          <form id="registerForm" class="auth-form">
+            <p class="auth-intro">T&#7841;o t&#224;i kho&#7843;n &#273;&#7875; l&#432;u h&#7891; s&#417; v&#224; ti&#7871;p t&#7909;c b&#224;i l&#224;m tr&#234;n thi&#7871;t b&#7883; n&#224;y.</p>
+            <label for="nameInput">H&#7885; v&#224; t&#234;n</label><input id="nameInput" maxlength="60" autocomplete="name" required>
+            <label for="classInput">L&#7899;p</label><input id="classInput" maxlength="20" placeholder="V&#237; d&#7909;: 12A1" autocomplete="organization-title" required>
+            <label for="idInput">ID h&#7885;c sinh (0001&#8211;1000)</label><input id="idInput" inputmode="numeric" maxlength="4" pattern="[0-9]{1,4}" placeholder="V&#237; d&#7909;: 0001" autocomplete="off" required>
+            <label for="registerEmail">Email</label><input id="registerEmail" type="email" autocomplete="email" required>
+            <label for="registerPassword">M&#7853;t kh&#7849;u</label><div class="password-field"><input id="registerPassword" type="password" minlength="6" autocomplete="new-password" required><button class="password-toggle" type="button" data-password-toggle="registerPassword" aria-label="Hi&#7875;n m&#7853;t kh&#7849;u" aria-pressed="false">Hi&#7875;n</button></div>
+            <button class="primary auth-submit" type="submit">T&#7841;o t&#224;i kho&#7843;n</button>
+            <button class="secondary auth-submit" id="changeAuthAccount" type="button" hidden>&#272;&#259;ng xu&#7845;t &#273;&#7875; &#273;&#7893;i / &#273;&#259;ng nh&#7853;p t&#224;i kho&#7843;n kh&#225;c</button>
+          </form>
+          <form id="loginForm" class="auth-form" hidden>
+            <p class="auth-intro">&#272;&#259;ng nh&#7853;p &#273;&#7875; v&#224;o kh&#244;ng gian &#244;n t&#7853;p v&#224; xem b&#7843;ng x&#7871;p h&#7841;ng.</p>
+            <label for="loginEmail">Email</label><input id="loginEmail" type="email" autocomplete="email" required>
+            <label for="loginPassword">M&#7853;t kh&#7849;u</label><div class="password-field"><input id="loginPassword" type="password" autocomplete="current-password" required><button class="password-toggle" type="button" data-password-toggle="loginPassword" aria-label="Hi&#7875;n m&#7853;t kh&#7849;u" aria-pressed="false">Hi&#7875;n</button></div>
+            <button class="primary auth-submit" type="submit">&#272;&#259;ng nh&#7853;p</button>
+          </form>
+          <p class="auth-error" id="authError" role="alert" aria-live="polite"></p>
+          <button type="button" class="secondary auth-retry" id="authRetry" hidden>Quay l&#7841;i s&#7917;a th&#244;ng tin</button>
+        </div>
+        <section id="accountView" hidden>
+          <p class="auth-intro">B&#7841;n &#273;ang &#273;&#259;ng nh&#7853;p b&#7857;ng <strong id="accountEmail"></strong>.</p>
+          <p id="accountDetails" class="account-details"></p>
+          <form id="adminUpgradeForm" class="admin-upgrade" hidden>
+            <label for="promotionCode">M&#227; th&#259;ng c&#7845;p qu&#7843;n tr&#7883; vi&#234;n</label>
+            <input id="promotionCode" type="password" autocomplete="off" required>
+            <button class="secondary auth-submit" id="adminUpgradeButton" type="submit">Th&#259;ng c&#7845;p l&#224;m qu&#7843;n tr&#7883; vi&#234;n</button>
+            <p id="adminUpgradeStatus" class="auth-error" role="status" aria-live="polite"></p>
+          </form>
+          <p id="adminUpgradeBadge" class="account-details admin-badge" hidden>B&#7841;n &#273;ang l&#224; qu&#7843;n tr&#7883; vi&#234;n.</p>
+          <button class="secondary auth-submit" id="logoutButton" type="button">&#272;&#259;ng xu&#7845;t</button>
+        </section>
+      </div>
     </div>
     <div class="modal" id="adminAuthModal" aria-hidden="true">
       <form class="profile-box" id="adminAuthForm">
@@ -235,8 +281,14 @@
       <div class="quiz" id="quizBox"></div>
     </div>
     <div class="toast" id="toast"></div>
+    <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-database-compat.js"></script>
     <script src="questions-tf.js"></script>
     <script src="questions-mc.js"></script>
+    <script src="questions-bio.js"></script>
+    <script src="questions-en.js"></script>
+    <script src="vocabulary-en.js"></script>
     <script src="firebase-config.js"></script>
     <script src="script.js"></script>
   </body>
