@@ -635,9 +635,10 @@ function submitFinalQuiz() {
 }
 function updateCourseLaunchButtons() {
   let hasProgress = Boolean(localStorage.getItem(courseStore("quiz-progress")));
-  document.querySelectorAll("#launchQuiz button, #fullQuiz").forEach((button) => {
+  document.querySelectorAll("#launchQuizButton, #fullQuiz").forEach((button) => {
     button.textContent = hasProgress ? "Chơi tiếp →" : "Bắt đầu chơi →";
   });
+  document.getElementById("resetQuiz").hidden = !hasProgress;
   const desc = document.querySelector("#launchQuiz p");
   if (desc) desc.textContent = hasProgress ? "Bạn đang có lượt chơi chưa hoàn thành. Tiếp tục đúng câu đang dở." : "Trả lời nhanh, tích lũy điểm và xem kết quả sau khi nộp bài.";
 }
@@ -909,8 +910,13 @@ function renderAllAnswers(targetId, questions = allQuestions) {
     )
     .join("");
 }
-document.getElementById("launchQuiz").onclick = () =>
+document.getElementById("launchQuizButton").onclick = () =>
   startQuiz(allQuestions.length);
+document.getElementById("resetQuiz").onclick = () => {
+  if (!localStorage.getItem(courseStore("quiz-progress"))) return;
+  clearQuizProgress();
+  startQuiz(allQuestions.length);
+};
 document.getElementById("fullQuiz").onclick = () =>
   startQuiz(allQuestions.length);
 modal.onclick = (e) => {

@@ -70,3 +70,4 @@ button[hidden]{display:none!important}
 
 /* Wide source tables stay as images and can be scrolled on narrow screens. */
 .question-image-scroll{width:100%;overflow-x:auto;margin:16px 0 22px;border:1px solid var(--line);border-radius:14px;background:#fff;-webkit-overflow-scrolling:touch}.question-table-image{display:block;width:100%;max-width:none;min-width:800px;max-height:none;margin:0;border:0;border-radius:0;object-fit:contain}.question-image-scroll:focus-visible{outline:3px solid #9584f4;outline-offset:2px}
+.quiz-launch .reset-quiz-btn{display:block;border:1px solid #ffffffa8;background:transparent;color:#fff;margin-top:10px;padding:8px 12px}.quiz-launch .reset-quiz-btn:hover{background:#ffffff20}
