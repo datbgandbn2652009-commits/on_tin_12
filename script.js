@@ -967,6 +967,7 @@ function showProfile() {
   if (savedName) document.getElementById("welcomeTag").textContent = `Ch\u00e0o, ${savedName}!`;
   document.getElementById("answersNav").hidden = !canViewAnswers();
   document.getElementById("adminUsersNav").hidden = !isAdmin();
+  document.getElementById("adminNavGroup").hidden = !isAdmin();
   document.getElementById("clearRanking").hidden = !isAdmin();
   document.getElementById("accountEmail").textContent = currentAuthUser?.email || "";
   document.getElementById("accountDetails").textContent = activeProfile
@@ -1207,7 +1208,6 @@ async function loadRegisteredUsers() {
   try {
     const snapshot = await firebaseDatabase.ref("users").once("value");
     const users = Object.entries(snapshot.val() || {}).map(([uid, profile]) => ({ uid, ...profile }))
-      .filter((profile) => profile.idSystem === "pool-1000-v1")
       .sort((a, b) => String(a.studentId).localeCompare(String(b.studentId)));
     body.innerHTML = users.map((profile) => {
       const createdAt = Number(profile.createdAt || profile.updatedAt);
