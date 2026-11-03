@@ -638,7 +638,6 @@ function updateCourseLaunchButtons() {
   document.querySelectorAll("#launchQuizButton, #fullQuiz").forEach((button) => {
     button.textContent = hasProgress ? "Chơi tiếp →" : "Bắt đầu chơi →";
   });
-  document.getElementById("resetQuiz").hidden = !hasProgress;
   const desc = document.querySelector("#launchQuiz p");
   if (desc) desc.textContent = hasProgress ? "Bạn đang có lượt chơi chưa hoàn thành. Tiếp tục đúng câu đang dở." : "Trả lời nhanh, tích lũy điểm và xem kết quả sau khi nộp bài.";
 }
