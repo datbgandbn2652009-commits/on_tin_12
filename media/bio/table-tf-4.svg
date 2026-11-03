@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1290" height="430" viewBox="0 0 1290 430" role="img" aria-labelledby="title desc">
+  <title id="title">Bảng thành phần đơn phân của bốn phân tử sinh học</title>
+  <desc id="desc">Số lượng glucose, amino acid, nucleotide A, T, U, C, G và tổng số ở các phân tử A, B, C, D.</desc>
+  <rect width="1290" height="430" rx="22" fill="#fff"/>
+  <rect x="2" y="2" width="1286" height="426" rx="20" fill="none" stroke="#dfe3ee" stroke-width="4"/>
+  <rect x="4" y="4" width="1282" height="132" rx="18" fill="#f0edff"/>
+  <path d="M4 105h1282v31H4z" fill="#f0edff"/>
+  <g stroke="#dfe3ee" stroke-width="3">
+    <path d="M180 4v422M318 4v422M456 4v422M594 4v422M732 4v422M870 4v422M1008 4v422M1146 4v422"/>
+    <path d="M4 136h1282M4 209h1282M4 282h1282M4 355h1282"/>
+  </g>
+  <g fill="#252b40" font-family="Arial, sans-serif" text-anchor="middle">
+    <text x="90" y="77" font-size="22" font-weight="700">Phân tử</text>
+    <text x="90" y="104" font-size="22" font-weight="700">sinh học</text>
+    <text x="663" y="43" font-size="22" font-weight="700">Đơn vị cấu tạo (số lượng đơn phân)</text>
+    <text x="1218" y="77" font-size="22" font-weight="700">Tổng</text>
+    <g font-size="19" font-weight="700">
+      <text x="249" y="118">Glucose</text><text x="387" y="118">Amino acid</text>
+      <text x="525" y="118">Adenine</text><text x="663" y="118">Thymine</text>
+      <text x="801" y="118">Uracil</text><text x="939" y="118">Cytosine</text>
+      <text x="1077" y="118">Guanine</text>
+    </g>
+    <g font-size="24">
+      <text x="90" y="182" font-weight="700">A</text><text x="249" y="182">1241</text><text x="387" y="182">—</text><text x="525" y="182">—</text><text x="663" y="182">—</text><text x="801" y="182">—</text><text x="939" y="182">—</text><text x="1077" y="182">—</text><text x="1218" y="182">1241</text>
+      <text x="90" y="255" font-weight="700">B</text><text x="249" y="255">—</text><text x="387" y="255">49</text><text x="525" y="255">—</text><text x="663" y="255">—</text><text x="801" y="255">—</text><text x="939" y="255">—</text><text x="1077" y="255">—</text><text x="1218" y="255">49</text>
+      <text x="90" y="328" font-weight="700">C</text><text x="249" y="328">—</text><text x="387" y="328">—</text><text x="525" y="328">812</text><text x="663" y="328">(I)</text><text x="801" y="328">—</text><text x="939" y="328">624</text><text x="1077" y="328">624</text><text x="1218" y="328">(III)</text>
+      <text x="90" y="401" font-weight="700">D</text><text x="249" y="401">—</text><text x="387" y="401">—</text><text x="525" y="401">52</text><text x="663" y="401">—</text><text x="801" y="401">91</text><text x="939" y="401">70</text><text x="1077" y="401">(II)</text><text x="1218" y="401">295</text>
+    </g>
+  </g>
+</svg>

@@ -688,6 +688,14 @@ function beginRandomRebirth() {
   saveQuizProgress();
   showQuestion();
 }
+function renderQuestionImage(q, alt) {
+  if (!q.image) return "";
+  const imageClass = q.imageKind === "wide-table" ? "question-image question-table-image" : "question-image";
+  const image = `<img class="${imageClass}" src="${esc(q.image)}" alt="${esc(alt)}" loading="lazy">`;
+  return q.imageKind === "wide-table"
+    ? `<div class="question-image-scroll" role="region" aria-label="Bảng dữ liệu; có thể cuộn ngang trên màn hình nhỏ" tabindex="0">${image}</div>`
+    : image;
+}
 function showQuestion() {
   if (idx >= run.length) return showResult();
   locked = false;
@@ -702,7 +710,7 @@ function showQuestion() {
       ? `<div class="tf-statements">${q.items.map((item, i) => `<div class="tf-row" data-row="${i}"><div class="tf-statement"><span class="tf-index">${i + 1}</span>${esc(item.text)}</div><div class="tf-pick"><button type="button" data-assert="${i}" data-value="0">Đúng</button><button type="button" data-assert="${i}" data-value="1">Sai</button></div></div>`).join("")}</div>`
       : q.type === "short" ? `<div class="short-answer"><input id="shortInput" autocomplete="off" placeholder="Nhập câu trả lời của bạn"><button class="primary" id="submitShort" type="button">Trả lời</button></div>`
       : `<div class="answers">${q.c.map((c, i) => `<button class="answer-choice" data-answer="${i}"><span class="choice-letter">${String.fromCharCode(65 + i)}</span>${renderChoiceContent(c)}</button>`).join("")}</div>`;
-  box.innerHTML = `<div class="quiz-top"><span class="quiz-brand">✦ ${currentSubject === "tin" ? "TIN H\u1eccC 12" : currentSubject === "bio" ? "SINH H\u1eccC 12" : "TI\u1ebeNG ANH 12"} <span class="quiz-meta">/ ${runMode === "retry" ? "TÁI SINH" : "ÔN TẬP GK1"}</span></span><span class="quiz-meta">${idx + 1} / ${run.length} <button class="close" id="closeQuiz" aria-label="Đóng">×</button></span></div><div class="progress"><i style="width:${(idx / run.length) * 100}%"></i></div><div class="quiz-settings"><span>Trả lời xong, tự chuyển sau 3 giây.</span></div><div class="quiz-label">${esc(q.t)} · ${q.type === "tf" ? "CHỌN ĐÚNG / SAI CHO CẢ 4 Ý" : q.type === "short" ? "TRẢ LỜI NGẮN" : "TRẮC NGHIỆM"}</div><h2>${esc(q.q)}</h2>${q.image ? `<img class="question-image" src="${esc(q.image)}" alt="Hình minh họa câu hỏi">` : ""}${body}<div class="feedback" id="feedback"></div><div class="quiz-bottom"><span class="score-live">⭐ ${score} điểm</span>${q.type === "tf" ? '<button class="next-btn" id="submitTf" disabled>Nộp cả 4 ý</button>' : '<button class="next-btn" id="nextBtn" style="visibility:hidden">Câu tiếp theo →</button>'}</div>`;
+  box.innerHTML = `<div class="quiz-top"><span class="quiz-brand">✦ ${currentSubject === "tin" ? "TIN H\u1eccC 12" : currentSubject === "bio" ? "SINH H\u1eccC 12" : "TI\u1ebeNG ANH 12"} <span class="quiz-meta">/ ${runMode === "retry" ? "TÁI SINH" : "ÔN TẬP GK1"}</span></span><span class="quiz-meta">${idx + 1} / ${run.length} <button class="close" id="closeQuiz" aria-label="Đóng">×</button></span></div><div class="progress"><i style="width:${(idx / run.length) * 100}%"></i></div><div class="quiz-settings"><span>Trả lời xong, tự chuyển sau 3 giây.</span></div><div class="quiz-label">${esc(q.t)} · ${q.type === "tf" ? "CHỌN ĐÚNG / SAI CHO CẢ 4 Ý" : q.type === "short" ? "TRẢ LỜI NGẮN" : "TRẮC NGHIỆM"}</div><h2>${esc(q.q)}</h2>${renderQuestionImage(q, "Hình minh họa câu hỏi")}${body}<div class="feedback" id="feedback"></div><div class="quiz-bottom"><span class="score-live">⭐ ${score} điểm</span>${q.type === "tf" ? '<button class="next-btn" id="submitTf" disabled>Nộp cả 4 ý</button>' : '<button class="next-btn" id="nextBtn" style="visibility:hidden">Câu tiếp theo →</button>'}</div>`;
   document.getElementById("closeQuiz").onclick = exitQuiz;
   if (q.type === "tf") {
     document.querySelectorAll("[data-assert]").forEach((button) => {
@@ -897,7 +905,7 @@ function renderAllAnswers(targetId, questions = allQuestions) {
   el.innerHTML = questions
     .map(
       (q, i) =>
-        `<article class="review-item"><h3>C&#226;u ${i + 1} &#183; ${esc(q.t)}</h3><p>${esc(q.q)}</p>${q.image ? `<img class="question-image" src="${esc(q.image)}" alt="Hình minh họa">` : ""}${q.type === "tf" ? `<ol>${q.items.map((item, j) => `<li>${esc(item.text)} <strong>${q.answers[j] === 0 ? "&#272;&#250;ng" : "Sai"}</strong></li>`).join("")}</ol>` : q.type === "short" ? `<p class="review-correct"><b>Đáp án:</b> ${esc(Array.isArray(q.a) ? q.a.join(" / ") : q.a)}</p>` : `<ol type="A">${q.c.map((choice, j) => { const right = (Array.isArray(q.a) ? q.a : [q.a]).includes(j); return `<li class="${right ? "review-correct" : ""}">${renderChoiceContent(choice)} ${right ? "<strong>← Đáp án</strong>" : ""}</li>`; }).join("")}</ol>`}</article>`,
+        `<article class="review-item"><h3>C&#226;u ${i + 1} &#183; ${esc(q.t)}</h3><p>${esc(q.q)}</p>${renderQuestionImage(q, "Hình minh họa câu hỏi")}${q.type === "tf" ? `<ol>${q.items.map((item, j) => `<li>${esc(item.text)} <strong>${q.answers[j] === 0 ? "&#272;&#250;ng" : "Sai"}</strong></li>`).join("")}</ol>` : q.type === "short" ? `<p class="review-correct"><b>Đáp án:</b> ${esc(Array.isArray(q.a) ? q.a.join(" / ") : q.a)}</p>` : `<ol type="A">${q.c.map((choice, j) => { const right = (Array.isArray(q.a) ? q.a : [q.a]).includes(j); return `<li class="${right ? "review-correct" : ""}">${renderChoiceContent(choice)} ${right ? "<strong>← Đáp án</strong>" : ""}</li>`; }).join("")}</ol>`}</article>`,
     )
     .join("");
 }

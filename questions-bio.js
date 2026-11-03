@@ -706,7 +706,7 @@ window.BIO_DATA = {
   ],
   "tf": [
     {
-      "q": "Phân tích vật chất di truyền của bốn chủng vi sinh vật gây bệnh thì thu được kết quả như bảng sau. Biết rằng bốn chủng trên đều có vật chất di truyền là một phân tử nucleic acid. Từ kết quả phân tích, mỗi nhận định sau đây ĐÚNG hay SAI? (T? l? A/T/U/G/C: ch?ng 1: 15/15/35/35/0; ch?ng 2: 30/20/30/20/0; ch?ng 3: 24/24/0/31/21; ch?ng 4: 27/27/23/23/0.)",
+      "q": "Phân tích vật chất di truyền của bốn chủng vi sinh vật gây bệnh thu được kết quả như bảng dưới đây. Biết rằng vật chất di truyền của mỗi chủng là một phân tử nucleic acid. Dựa vào kết quả phân tích, hãy xác định mỗi nhận định sau đây ĐÚNG hay SAI.",
       "items": [
         {
           "text": "Chủng 1 có thể có vật chất di truyền là một phân tử DNA mạch kép hoặc mạch đơn.",
@@ -732,7 +732,9 @@ window.BIO_DATA = {
         0,
         0
       ],
-      "t": "Di truyen phan tu"
+      "t": "Di truyen phan tu",
+      "image": "media/bio/table-tf-1.svg",
+      "imageKind": "wide-table"
     },
     {
       "q": "Người ta chuyển một số vi khuẩn E.coli mang các phân tử DNA vùng nhân chỉ chứa N15 sang môi trường chỉ có N14. Các vi khuẩn nói trên đều thực hiện tái bản 5 lần liên tiếp tạo được 480 phân tử DNA vùng nhân chỉ chứa N14. Sau đó chuyển các vi khuẩn này về môi trường chỉ chứa N15 và cho chúng tái bản tiếp 2 lần nữa. Hãy cho biết mỗi nhận định sau đây là ĐÚNG hay SAI?",
@@ -794,7 +796,7 @@ window.BIO_DATA = {
       "image": "media/bio/image1.png"
     },
     {
-      "q": "Khi phân tích cấu trúc của tế bào lúa nước (Oryza sativa) phát hiện 4 phân tử sinh học A, B, C, D, thông tin được ghi trong bảng sau:",
+      "q": "Khi phân tích tế bào lúa nước (Oryza sativa), người ta phát hiện bốn phân tử sinh học A, B, C và D. Số liệu về các đơn phân cấu tạo nên chúng được trình bày trong bảng dưới đây. Hãy xác định mỗi phát biểu sau đây ĐÚNG hay SAI.",
       "items": [
         {
           "text": "Phân tử sinh học A có thể là vật chất di truyền trong nhân tế bào.",
@@ -820,7 +822,9 @@ window.BIO_DATA = {
         0,
         0
       ],
-      "t": "Di truyen phan tu"
+      "t": "Di truyen phan tu",
+      "image": "media/bio/table-tf-4.svg",
+      "imageKind": "wide-table"
     },
     {
       "q": "Hình 6 dưới đây mô tả quá trình truyền thông tin di truyền ở sinh vật",

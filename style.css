@@ -67,3 +67,6 @@ button[hidden]{display:none!important}
 @media(max-width:850px){.admin-nav-group{flex:0 0 auto;min-width:max-content}}
 
 .admin-users-table{min-width:920px}.admin-reset-password{white-space:nowrap;min-height:36px;padding:7px 10px;font-size:11px}
+
+/* Wide source tables stay as images and can be scrolled on narrow screens. */
+.question-image-scroll{width:100%;overflow-x:auto;margin:16px 0 22px;border:1px solid var(--line);border-radius:14px;background:#fff;-webkit-overflow-scrolling:touch}.question-table-image{display:block;width:100%;max-width:none;min-width:800px;max-height:none;margin:0;border:0;border-radius:0;object-fit:contain}.question-image-scroll:focus-visible{outline:3px solid #9584f4;outline-offset:2px}
