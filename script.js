@@ -1212,7 +1212,7 @@ async function loadRegisteredUsers() {
     body.innerHTML = users.map((profile) => {
       const createdAt = Number(profile.createdAt || profile.updatedAt);
       const date = Number.isFinite(createdAt) && createdAt > 0 ? new Date(createdAt).toLocaleString("vi-VN") : "—";
-      return `<tr><td>${escapeAdminCell(profile.studentId)}</td><td>${escapeAdminCell(profile.name)}</td><td>${escapeAdminCell(profile.className)}</td><td>${escapeAdminCell(profile.email)}</td><td class="admin-uid">${escapeAdminCell(profile.uid)}</td><td>${escapeAdminCell(date)}</td></tr>`;
+      return `<tr><td>${escapeAdminCell(profile.studentId)}</td><td>${escapeAdminCell(profile.name)}</td><td>${escapeAdminCell(profile.className)}</td><td>${escapeAdminCell(profile.email)}</td><td class="admin-uid">${escapeAdminCell(profile.uid)}</td><td>${escapeAdminCell(date)}</td><td><button type="button" class="secondary admin-reset-password" data-reset-email="${escapeAdminCell(profile.email)}">G\u1eedi link</button></td></tr>`;
     }).join("");
     empty.hidden = users.length > 0;
     status.textContent = `T\u1ed5ng c\u1ed9ng ${users.length} t\u00e0i kho\u1ea3n \u0111\u00e3 \u0111\u0103ng k\u00fd.`;
@@ -1221,6 +1221,20 @@ async function loadRegisteredUsers() {
   }
 }
 document.getElementById("refreshUsers").onclick = loadRegisteredUsers;
+document.getElementById("adminUsersBody").addEventListener("click", async (event) => {
+  const button = event.target.closest("[data-reset-email]");
+  if (!button || !isAdmin() || !firebaseAuth) return;
+  const email = button.dataset.resetEmail;
+  if (!email || !confirm(`Gửi email đặt lại mật khẩu tới ${email}?`)) return;
+  button.disabled = true;
+  const status = document.getElementById("adminUsersStatus");
+  status.textContent = `Đang gửi liên kết đặt lại mật khẩu tới ${email}...`;
+  try {
+    await firebaseAuth.sendPasswordResetEmail(email);
+    status.textContent = `Đã gửi email đặt lại mật khẩu tới ${email}.`;
+  } catch (error) { status.textContent = friendlyAuthError(error); }
+  finally { button.disabled = false; }
+});
 document.onkeydown = (event) => {
   if (event.key === "Escape") {
     if (rebirthRequired) { event.preventDefault(); return; }

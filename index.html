@@ -41,7 +41,10 @@
               <button data-page="quiz"><span class="ico">⚡</span>Thử thách quiz</button>
               <button data-page="ranking" id="rankNav"><span class="ico">🏆</span>Bảng xếp hạng</button>
               <button data-page="answers" id="answersNav" hidden><span class="ico">📖</span>Đáp án</button>
-              <button data-page="adminUsers" id="adminUsersNav" hidden><span class="ico">♙</span>Quản lý tài khoản</button>
+            </div>
+            <div class="admin-nav-group" id="adminNavGroup" hidden>
+              <div class="course-nav-title">QU&#7842;N TR&#7882; VI&#202;N</div>
+              <button data-page="adminUsers" id="adminUsersNav"><span class="ico">&#9817;</span>T&#224;i kho&#7843;n ng&#432;&#7901;i d&#249;ng</button>
             </div>
           </nav>
           <div class="side-note" id="sideNote" hidden>
@@ -218,8 +221,8 @@
           </section>
           <section id="adminUsers" class="page">
             <div class="section-head"><div><h2>Thông tin người đăng ký</h2><p>Chỉ quản trị viên xem được. Mật khẩu không được lưu hoặc hiển thị tại đây.</p></div><button class="secondary" id="refreshUsers" type="button">Tải lại</button></div>
-            <p id="adminUsersStatus" class="rank-note" aria-live="polite"></p>
-            <div class="leaderboard-wrap admin-users-wrap"><table class="leaderboard admin-users-table"><thead><tr><th>ID</th><th>Họ và tên</th><th>Lớp</th><th>Email</th><th>UID tài khoản</th><th>Ngày đăng ký</th></tr></thead><tbody id="adminUsersBody"></tbody></table><div class="empty" id="adminUsersEmpty" hidden>Chưa có tài khoản nào.</div></div>
+            <p class="rank-note">Qu&#7843;n tr&#7883; vi&#234;n xem &#273;&#432;&#7907;c h&#7885; t&#234;n, l&#7899;p, ID, email v&#224; UID. Firebase kh&#244;ng cho ph&#233;p xem l&#7841;i m&#7853;t kh&#7849;u; m&#7853;t kh&#7849;u kh&#244;ng &#273;&#432;&#7907;c l&#432;u trong h&#7891; s&#417;.</p><p id="adminUsersStatus" class="rank-note" aria-live="polite"></p>
+            <div class="leaderboard-wrap admin-users-wrap"><table class="leaderboard admin-users-table"><thead><tr><th>ID</th><th>Họ và tên</th><th>Lớp</th><th>Email</th><th>UID tài khoản</th><th>Ngày đăng ký</th><th>Thao t&#225;c</th></tr></thead><tbody id="adminUsersBody"></tbody></table><div class="empty" id="adminUsersEmpty" hidden>Chưa có tài khoản nào.</div></div>
           </section>
           <div class="footer">
             Nội dung ôn tập được tổng hợp từ ngân hàng câu hỏi Tin học và tài liệu
