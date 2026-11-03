@@ -1128,12 +1128,17 @@ document.getElementById("registerForm").onsubmit = async (event) => {
   } finally { setAuthBusy(false); }
 };
 document.getElementById("loginForm").onsubmit = async (event) => {
-  event.preventDefault(); if (authBusy || !firebaseReady) return setAuthMessage("Firebase ch\u01b0a t\u1ea3i \u0111\u01b0\u1ee3c. H\u00e3y k\u1ebft n\u1ed1i m\u1ea1ng v\u00e0 t\u1ea3i l\u1ea1i trang.");
-  setAuthBusy(true); setAuthMessage("");
+  event.preventDefault();
+  if (authBusy) return;
+  if (!firebaseReady) return setAuthMessage("Firebase ch\u01b0a s\u1eb5n s\u00e0ng. Ki\u1ec3m tra k\u1ebft n\u1ed1i m\u1ea1ng v\u00e0 t\u1ea3i l\u1ea1i trang.");
+  const submit = document.querySelector("#loginForm button[type=\"submit\"]");
+  const originalLabel = submit.textContent;
+  setAuthBusy(true); submit.textContent = "\u0110ang \u0111\u0103ng nh\u1eadp..."; setAuthMessage("\u0110ang ki\u1ec3m tra t\u00e0i kho\u1ea3n...");
   try {
     await firebaseAuth.signInWithEmailAndPassword(document.getElementById("loginEmail").value.trim(), document.getElementById("loginPassword").value);
+    setAuthMessage("\u0110\u0103ng nh\u1eadp th\u00e0nh c\u00f4ng. \u0110ang m\u1edf h\u1ed3 s\u01a1...");
   } catch (error) { setAuthMessage(friendlyAuthError(error)); }
-  finally { setAuthBusy(false); }
+  finally { setAuthBusy(false); submit.textContent = originalLabel; }
 };
 document.getElementById("logoutButton").onclick = async () => { if (!authBusy) await firebaseAuth.signOut(); };
 document.getElementById("changeAuthAccount").onclick = async () => {
