@@ -919,7 +919,7 @@ window.BIO_DATA = {
       "items": [
         {
           "text": "Tất cả thành tựu trên đây là sinh vật biến đổi gen.",
-          "a": 1
+          "a": 0
         },
         {
           "text": "Kỹ thuật tạo DNA tái tổ hợp được sử dụng để sản xuất các chế phẩm sinh học.",
@@ -936,7 +936,7 @@ window.BIO_DATA = {
       ],
       "type": "tf",
       "answers": [
-        1,
+        0,
         0,
         1,
         0
