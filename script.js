@@ -2,7 +2,7 @@ const storedSubject = localStorage.getItem("web3-current-subject");
 let currentSubject = storedSubject || "tin";
 let subjectSelected = Boolean(storedSubject);
 let activeUid = "";
-function courseStore(key) { const prefix = currentSubject === "tin" ? "tin12" : currentSubject === "bio" ? "bio12" : "en12"; return `${prefix}-${activeUid || "guest"}-${key}`; }
+function courseStore(key) { const prefix = currentSubject === "tin" ? "tin12" : currentSubject === "bio" ? "bio12" : currentSubject === "en" ? "en12" : "history12"; return `${prefix}-${activeUid || "guest"}-${key}`; }
 let tfData = window.TF_DATA;
 let mcData = window.MC_DATA;
 let topics = [
@@ -141,10 +141,29 @@ function setupTopics() {
   document.getElementById("sideNote").innerHTML = currentSubject === "tin"
     ? "📘 <b>Nguồn ôn tập</b><br>Đề cương Tin học 12; đáp án lấy từ ngân hàng câu hỏi của môn học."
     : currentSubject === "bio" ? "🧬 <b>Nguồn ôn tập</b><br>Ngân hàng ôn tập giữa kì 1 Sinh học 12 trong tài liệu Word." : "🇬🇧 <b>Nguồn ôn tập</b><br>Từ vựng, ngữ pháp và bài tập Unit 1–3 trong TH_TA_UNIT_123.";
+
+  if (currentSubject === "history") {
+    document.querySelector(".brand small").textContent = "LỊCH SỬ 12 · ÔN TẬP GIỮA KÌ";
+    document.getElementById("activeCourseLabel").textContent = "Đang học: Ôn tập GK1 Lịch sử 12";
+    document.getElementById("welcomeTag").textContent = "ÔN TẬP GIỮA KÌ 1 · LỊCH SỬ 12";
+    document.querySelector("#course .hero h1").innerHTML = "Hiểu chuyện xưa.<br>Vững bước tương lai.";
+    document.querySelector("#course .hero p").textContent = "Hệ thống hóa kiến thức Lịch sử 12 qua 60 câu trắc nghiệm và 5 nhóm đúng/sai.";
+    document.getElementById("courseNavTitle").textContent = "LỊCH SỬ 12 · ÔN TẬP GK1";
+    document.querySelector("#quiz h2").textContent = "Ôn tập GK1 Lịch sử 12";
+    document.querySelector("#quiz .card h3").textContent = "Toàn bộ đề cương Lịch sử 12";
+    document.getElementById("courseAskTitle").textContent = "🏛️ Hỏi đáp Lịch sử";
+    document.getElementById("askInput").placeholder = "Ví dụ: Vai trò của Liên hợp quốc là gì?";
+    const historyQuick = document.querySelector("#course .quick");
+    if (historyQuick) historyQuick.innerHTML = "<button>Liên hợp quốc thành lập khi nào?</button><button>ASEAN có mấy trụ cột?</button><button>Thời cơ của Cách mạng tháng Tám là gì?</button>";
+    document.querySelector("#practice .section-head p").textContent = "Tra cứu nhanh các nội dung trong đề cương Lịch sử 12.";
+    document.querySelector("#practice .quick").innerHTML = "<button>Hội nghị Ianta diễn ra năm nào?</button><button>Mục tiêu của Liên hợp quốc là gì?</button><button>Ba trụ cột của Cộng đồng ASEAN?</button><button>Nhật Bản đầu hàng vào tháng nào?</button>";
+    document.getElementById("sideNote").innerHTML = "🏛️ <b>Nguồn ôn tập</b><br>Đề cương Ôn tập Lịch sử 12 GK1 2026–2027. Đáp án trắc nghiệm lấy theo phần gạch chân trong tài liệu.";
+    document.querySelectorAll(".topic-foot span:first-child").forEach((node) => { node.textContent = "ĐỀ CƯƠNG LỊCH SỬ 12"; });
+  }
 }
 
 function activateSubject(subject, persist = true) {
-  currentSubject = ["tin", "bio", "en"].includes(subject) ? subject : "tin";
+  currentSubject = ["tin", "bio", "en", "history"].includes(subject) ? subject : "tin";
   if (persist) subjectSelected = true;
   if (currentSubject === "bio") {
     const bank = window.BIO_DATA || { tf: [], mc: [], short: [] };
@@ -155,6 +174,18 @@ function activateSubject(subject, persist = true) {
       { name: "Đột biến và công nghệ gene", icon: "🔬", color: "#e8f5ff", desc: "Đột biến gene, công nghệ gene và ứng dụng." },
       { name: "Nhiễm sắc thể", icon: "🧫", color: "#eeeaff", desc: "Cấu trúc, hình thái và phân bào." },
       { name: "Di truyền Mendel", icon: "🌱", color: "#fff2e6", desc: "Quy luật di truyền và các phép lai." },
+    ];
+    concepts = [];
+
+  } else if (currentSubject === "history") {
+    const bank = window.HISTORY_DATA || { tf: [], mc: [] };
+    tfData = bank.tf;
+    mcData = bank.mc;
+    topics = [
+      { name: "Liên hợp quốc và trật tự I-an-ta", icon: "🌐", color: "#e8f5ff", desc: "Bối cảnh ra đời, mục tiêu, nguyên tắc và vai trò của Liên hợp quốc." },
+      { name: "Trật tự thế giới sau Chiến tranh lạnh", icon: "🌍", color: "#eeeaff", desc: "Những xu thế và nhân tố tác động đến trật tự thế giới mới." },
+      { name: "ASEAN", icon: "🤝", color: "#e8f8ef", desc: "Quá trình hình thành, phát triển và Cộng đồng ASEAN." },
+      { name: "Cách mạng tháng Tám 1945", icon: "🕊️", color: "#fff2e6", desc: "Thời cơ, diễn biến, kết quả, ý nghĩa và bài học lịch sử." },
     ];
     concepts = [];
   } else if (currentSubject === "en") {
@@ -503,6 +534,21 @@ function advanceQuestion() {
 function startTransition(button) {
   clearTransition();
   if (idx === run.length - 1) {
+    if (runMode === "retry" && phoenixReturn) {
+      pendingAdvance = true;
+      awaitingSubmit = false;
+      saveQuizProgress();
+      let seconds = 3;
+      button.disabled = true;
+      button.style.visibility = "visible";
+      button.textContent = "Tự chuyển sau " + seconds + " giây";
+      transitionInterval = setInterval(() => {
+        seconds--;
+        if (seconds > 0) button.textContent = "Tự chuyển sau " + seconds + " giây";
+      }, 1000);
+      transitionTimeout = setTimeout(returnToMainQuizAfterPhoenix, 3000);
+      return;
+    }
     pendingAdvance = false;
     awaitingSubmit = true;
     saveQuizProgress();
@@ -547,7 +593,8 @@ function startQuiz(
   }
   if (restoreQuizProgress()) {
     modal.classList.add("open");
-    if (rebirthRequired) showMandatoryRebirth();
+    if (phoenixRetryPending) returnToMainQuizAfterPhoenix();
+    else if (rebirthRequired) showMandatoryRebirth();
     else if (awaitingSubmit) showPendingSubmit();
     else showQuestion();
     return;
@@ -558,6 +605,8 @@ function startQuiz(
     subset || allQuestions.filter((q) => topic === "all" || q.t === topic);
   run = shuffled(pool).slice(0, Math.min(n, pool.length));
   questionScores = new Map();
+  resumeRun = null;
+  phoenixReturn = null;
   idx = 0;
   score = 0;
   answered = 0;
@@ -569,6 +618,8 @@ function startQuiz(
   pendingAdvance = false;
   awaitingSubmit = false;
   rebirthRequired = false;
+  phoenixRetryPending = false;
+  nextPhoenixAt = answered + randomPhoenixGap();
   restoredTfSelections = null;
   modal.classList.add("open");
   saveQuizProgress();
@@ -577,6 +628,8 @@ function startQuiz(
 let resumeRun = null,
   questionScores = new Map();
 let rebirthRequired = false;
+let phoenixReturn = null, nextPhoenixAt = 0, phoenixRetryPending = false;
+function randomPhoenixGap() { return 15 + Math.floor(Math.random() * 6); }
 function questionIndex(q) { return allQuestions.indexOf(q); }
 function encodeRunState(state) {
   if (!state) return null;
@@ -586,6 +639,25 @@ function decodeRunState(state) {
   if (!state) return null;
   return { ...state, run: state.run.map((i) => allQuestions[i]).filter(Boolean), wrongQuestions: state.wrongQuestions.map((i) => allQuestions[i]).filter(Boolean) };
 }
+function encodePhoenixState(state) {
+  if (!state) return null;
+  return {
+    run: state.run.map(questionIndex), idx: state.idx, score: state.score,
+    answered: state.answered, correctCount: state.correctCount,
+    wrongQuestions: state.wrongQuestions.map(questionIndex), runMode: state.runMode,
+    questionScores: [...state.questionScores].map(([q, points]) => [questionIndex(q), points]),
+    nextPhoenixAt: state.nextPhoenixAt,
+  };
+}
+function decodePhoenixState(state) {
+  if (!state) return null;
+  return {
+    ...state,
+    run: (state.run || []).map((i) => allQuestions[i]).filter(Boolean),
+    wrongQuestions: (state.wrongQuestions || []).map((i) => allQuestions[i]).filter(Boolean),
+    questionScores: new Map((state.questionScores || []).map(([i, points]) => [allQuestions[i], points]).filter(([q]) => q)),
+  };
+}
 function saveQuizProgress() {
   if (!run.length || runFinished) return;
   const snapshot = {
@@ -593,6 +665,7 @@ function saveQuizProgress() {
     wrongQuestions: wrongQuestions.map(questionIndex), runMode,
     questionScores: [...questionScores].map(([q, points]) => [questionIndex(q), points]),
     tfSelections, pendingAdvance, awaitingSubmit, rebirthRequired, resumeRun: encodeRunState(resumeRun),
+    phoenixReturn: encodePhoenixState(phoenixReturn), nextPhoenixAt,
   };
   try { localStorage.setItem(courseStore("quiz-progress"), JSON.stringify(snapshot)); } catch {}
   updateCourseLaunchButtons();
@@ -607,7 +680,9 @@ function restoreQuizProgress() {
   if (!snapshot || !Array.isArray(snapshot.run)) return false;
   run = snapshot.run.map((i) => allQuestions[i]).filter(Boolean);
   if (!run.length) { clearQuizProgress(); return false; }
-  idx = Math.min(snapshot.idx + (snapshot.pendingAdvance ? 1 : 0), run.length);
+  phoenixReturn = decodePhoenixState(snapshot.phoenixReturn);
+  const wasPendingAdvance = Boolean(snapshot.pendingAdvance);
+  idx = Math.min(snapshot.idx + (wasPendingAdvance && !phoenixReturn ? 1 : 0), run.length);
   score = snapshot.score || 0;
   answered = snapshot.answered || 0;
   correctCount = snapshot.correctCount || 0;
@@ -615,10 +690,12 @@ function restoreQuizProgress() {
   runMode = snapshot.runMode || "normal";
   questionScores = new Map((snapshot.questionScores || []).map(([i, points]) => [allQuestions[i], points]).filter(([q]) => q));
   resumeRun = decodeRunState(snapshot.resumeRun);
+  nextPhoenixAt = Number(snapshot.nextPhoenixAt) || answered + randomPhoenixGap();
+  phoenixRetryPending = Boolean(phoenixReturn && wasPendingAdvance);
   pendingAdvance = false;
   awaitingSubmit = Boolean(snapshot.awaitingSubmit);
   rebirthRequired = Boolean(snapshot.rebirthRequired);
-  restoredTfSelections = snapshot.pendingAdvance ? null : snapshot.tfSelections;
+  restoredTfSelections = wasPendingAdvance ? null : snapshot.tfSelections;
   runFinished = false;
   locked = false;
   return true;
@@ -641,15 +718,12 @@ function updateCourseLaunchButtons() {
   const desc = document.querySelector("#launchQuiz p");
   if (desc) desc.textContent = hasProgress ? "Bạn đang có lượt chơi chưa hoàn thành. Tiếp tục đúng câu đang dở." : "Trả lời nhanh, tích lũy điểm và xem kết quả sau khi nộp bài.";
 }
-function offerRebirth() {
-  if (
-    runMode !== "normal" ||
-    idx >= run.length - 1 ||
-    !wrongQuestions.length ||
-    Math.random() > 0.22
-  ) return false;
+function maybeTriggerPhoenix() {
+  if (runMode !== "normal" || idx >= run.length - 1 || !wrongQuestions.length || answered < nextPhoenixAt) return false;
   rebirthRequired = true;
   pendingAdvance = false;
+  awaitingSubmit = false;
+  nextPhoenixAt = answered + randomPhoenixGap();
   saveQuizProgress();
   return true;
 }
@@ -657,34 +731,66 @@ function showMandatoryRebirth() {
   locked = true;
   clearTransition();
   saveQuizProgress();
-  box.innerHTML = `<div class="phoenix-gate"><div class="phoenix-icon" aria-hidden="true">\u{1F525}</div><p class="quiz-label">S\u1EF0 KI\u1EC6N B\u1EA4T NG\u1EDC</p><h2>Ph\u01B0\u1EE3ng ho\u00E0ng t\u00E1i sinh!</h2><p>B\u1EA1n ph\u1EA3i l\u00E0m l\u1EA1i ${wrongQuestions.length} c\u00E2u \u0111\u00E3 sai tr\u01B0\u1EDBc khi ti\u1EBFp t\u1EE5c l\u01B0\u1EE3t ch\u01A1i.</p><button class="next-btn phoenix-start" id="startRebirth" type="button">T\u00E1i sinh ngay \u2192</button></div>`;
-  document.getElementById("startRebirth").onclick = beginRandomRebirth;
+  const choices = wrongQuestions.map((q, i) => `<button class="phoenix-choice" type="button" data-phoenix-question="${i}"><span>${esc(q.t || "Câu đã trả lời sai")}</span><strong>${esc(q.q)}</strong><small>Chọn câu này để làm lại</small></button>`).join("");
+  box.innerHTML = `<div class="phoenix-gate"><div class="phoenix-icon" aria-hidden="true">\u{1F525}</div><p class="quiz-label">PH\u01AF\u1EE2NG HO\u00C0NG T\u00C1I SINH</p><h2>Ch\u1ECDn m\u1ED9t c\u00E2u sai \u0111\u1EC3 l\u00E0m l\u1EA1i</h2><p>B\u1EA1n ch\u1ECDn m\u1ED9t c\u00E2u trong danh s\u00E1ch. Tr\u1EA3 l\u1EDDi xong s\u1EBD quay l\u1EA1i b\u00E0i \u0111ang l\u00E0m.</p><div class="phoenix-choices">${choices}</div></div>`;
+  document.querySelectorAll("[data-phoenix-question]").forEach((button) => {
+    button.onclick = () => beginPhoenixQuestion(wrongQuestions[Number(button.dataset.phoenixQuestion)]);
+  });
 }
-function beginRandomRebirth() {
-  if (!rebirthRequired) return;
+function beginPhoenixQuestion(question) {
+  if (!rebirthRequired || !wrongQuestions.includes(question)) return;
   clearTransition();
-  let misses = [...wrongQuestions];
-  resumeRun = {
-    run,
-    idx: idx + 1,
-    score,
-    answered,
-    correctCount,
-    wrongQuestions,
-    runMode,
-    replacedPoints: misses.reduce(
-      (sum, q) => sum + (questionScores.get(q) || 0),
-      0,
-    ),
+  stopActiveAudio();
+  phoenixReturn = {
+    run: [...run], idx: idx + 1, score, answered, correctCount,
+    wrongQuestions: [...wrongQuestions], runMode,
+    questionScores: new Map(questionScores), nextPhoenixAt,
+    selectedQuestion: question,
   };
-  run = shuffled(misses);
+  run = [question];
   idx = 0;
   score = 0;
   answered = 0;
   correctCount = 0;
   wrongQuestions = [];
+  questionScores = new Map();
+  resumeRun = null;
   runMode = "retry";
   rebirthRequired = false;
+  pendingAdvance = false;
+  awaitingSubmit = false;
+  phoenixRetryPending = false;
+  restoredTfSelections = null;
+  saveQuizProgress();
+  showQuestion();
+}
+function returnToMainQuizAfterPhoenix() {
+  clearTransition();
+  stopActiveAudio();
+  if (!phoenixReturn) return;
+  const resultQuestion = run[0];
+  const retryPoints = questionScores.get(resultQuestion) || 0;
+  const retryWasCorrect = correctCount === 1;
+  const original = phoenixReturn;
+  run = original.run;
+  idx = original.idx;
+  score = original.score - (original.questionScores.get(resultQuestion) || 0) + retryPoints;
+  answered = original.answered;
+  correctCount = original.correctCount + (retryWasCorrect ? 1 : 0);
+  wrongQuestions = original.wrongQuestions.filter((q) => q !== resultQuestion);
+  if (!retryWasCorrect) wrongQuestions.push(resultQuestion);
+  runMode = original.runMode;
+  questionScores = new Map(original.questionScores);
+  questionScores.set(resultQuestion, retryPoints);
+  nextPhoenixAt = original.nextPhoenixAt;
+  phoenixReturn = null;
+  phoenixRetryPending = false;
+  rebirthRequired = false;
+  pendingAdvance = false;
+  awaitingSubmit = false;
+  restoredTfSelections = null;
+  locked = false;
+  runFinished = false;
   saveQuizProgress();
   showQuestion();
 }
@@ -710,7 +816,7 @@ function showQuestion() {
       ? `<div class="tf-statements">${q.items.map((item, i) => `<div class="tf-row" data-row="${i}"><div class="tf-statement"><span class="tf-index">${i + 1}</span>${esc(item.text)}</div><div class="tf-pick"><button type="button" data-assert="${i}" data-value="0">Đúng</button><button type="button" data-assert="${i}" data-value="1">Sai</button></div></div>`).join("")}</div>`
       : q.type === "short" ? `<div class="short-answer"><input id="shortInput" autocomplete="off" placeholder="Nhập câu trả lời của bạn"><button class="primary" id="submitShort" type="button">Trả lời</button></div>`
       : `<div class="answers">${q.c.map((c, i) => `<button class="answer-choice" data-answer="${i}"><span class="choice-letter">${String.fromCharCode(65 + i)}</span>${renderChoiceContent(c)}</button>`).join("")}</div>`;
-  box.innerHTML = `<div class="quiz-top"><span class="quiz-brand">✦ ${currentSubject === "tin" ? "TIN H\u1eccC 12" : currentSubject === "bio" ? "SINH H\u1eccC 12" : "TI\u1ebeNG ANH 12"} <span class="quiz-meta">/ ${runMode === "retry" ? "TÁI SINH" : "ÔN TẬP GK1"}</span></span><span class="quiz-meta">${idx + 1} / ${run.length} <button class="close" id="closeQuiz" aria-label="Đóng">×</button></span></div><div class="progress"><i style="width:${(idx / run.length) * 100}%"></i></div><div class="quiz-settings"><span>Trả lời xong, tự chuyển sau 3 giây.</span></div><div class="quiz-label">${esc(q.t)} · ${q.type === "tf" ? "CHỌN ĐÚNG / SAI CHO CẢ 4 Ý" : q.type === "short" ? "TRẢ LỜI NGẮN" : "TRẮC NGHIỆM"}</div><h2>${esc(q.q)}</h2>${renderQuestionImage(q, "Hình minh họa câu hỏi")}${body}<div class="feedback" id="feedback"></div><div class="quiz-bottom"><span class="score-live">⭐ ${score} điểm</span>${q.type === "tf" ? '<button class="next-btn" id="submitTf" disabled>Nộp cả 4 ý</button>' : '<button class="next-btn" id="nextBtn" style="visibility:hidden">Câu tiếp theo →</button>'}</div>`;
+  box.innerHTML = `<div class="quiz-top"><span class="quiz-brand">✦ ${currentSubject === "tin" ? "TIN H\u1eccC 12" : currentSubject === "bio" ? "SINH H\u1eccC 12" : currentSubject === "history" ? "L\u1ecaCH S\u1eec 12" : "TI\u1ebeNG ANH 12"} <span class="quiz-meta">/ ${runMode === "retry" ? "TÁI SINH" : "ÔN TẬP GK1"}</span></span><span class="quiz-meta">${idx + 1} / ${run.length} <button class="close" id="closeQuiz" aria-label="Đóng">×</button></span></div><div class="progress"><i style="width:${(idx / run.length) * 100}%"></i></div><div class="quiz-settings"><span>Trả lời xong, tự chuyển sau 3 giây.</span></div><div class="quiz-label">${esc(q.t)} · ${q.type === "tf" ? "CHỌN ĐÚNG / SAI CHO CẢ 4 Ý" : q.type === "short" ? "TRẢ LỜI NGẮN" : "TRẮC NGHIỆM"}</div><h2>${esc(q.q)}</h2>${renderQuestionImage(q, "Hình minh họa câu hỏi")}${body}<div class="feedback" id="feedback"></div><div class="quiz-bottom"><span class="score-live">⭐ ${score} điểm</span>${q.type === "tf" ? '<button class="next-btn" id="submitTf" disabled>Nộp cả 4 ý</button>' : '<button class="next-btn" id="nextBtn" style="visibility:hidden">Câu tiếp theo →</button>'}</div>`;
   document.getElementById("closeQuiz").onclick = exitQuiz;
   if (q.type === "tf") {
     document.querySelectorAll("[data-assert]").forEach((button) => {
@@ -743,6 +849,9 @@ function exitQuiz() {
   if (runFinished) clearQuizProgress();
   modal.classList.remove("open");
 }
+function countQuizAnswer() {
+  if (!(runMode === "retry" && phoenixReturn)) answered++;
+}
 function selectTf(row, value) {
   if (locked) return;
   tfSelections[row] = value;
@@ -757,7 +866,7 @@ function selectTf(row, value) {
 function submitTf(q) {
   if (locked || tfSelections.some((x) => x === null)) return;
   locked = true;
-  answered++;
+  countQuizAnswer();
   let correct = 0;
   document.querySelectorAll("[data-row]").forEach((row, i) => {
     let right = q.answers[i],
@@ -779,7 +888,16 @@ function submitTf(q) {
   document.querySelector(".score-live").textContent = `⭐ ${score} điểm`;
   document.getElementById("feedback").innerHTML =
     `<b>${correct === q.items.length ? "Cả 4 ý đều đúng!" : `Bạn đúng ${correct}/4 ý.`}</b> Mỗi ý đúng được 25 điểm. Đáp án đúng được tô xanh.`;
-  if (correct < q.items.length && offerRebirth()) return showMandatoryRebirth();
+  if (runMode === "retry" && phoenixReturn) {
+    let retryNext = document.createElement("button");
+    retryNext.className = "next-btn";
+    retryNext.textContent = "T\u1ef1 chuy\u1ec3n sau 3 gi\u00e2y";
+    retryNext.disabled = true;
+    document.getElementById("submitTf").replaceWith(retryNext);
+    startTransition(retryNext);
+    return;
+  }
+  if (maybeTriggerPhoenix()) return showMandatoryRebirth();
   let next = document.createElement("button");
   next.className = "next-btn";
   next.textContent = "T\u1ef1 chuy\u1ec3n sau 3 gi\u00e2y";
@@ -790,7 +908,7 @@ function submitTf(q) {
 function choose(a, q) {
   if (locked) return;
   locked = true;
-  answered++;
+  countQuizAnswer();
   let correctAnswers = Array.isArray(q.a) ? q.a : [q.a];
   let ok = correctAnswers.includes(a);
   playAnswerSound(ok);
@@ -807,7 +925,8 @@ function choose(a, q) {
   document.getElementById("feedback").innerHTML =
     `<b style="color:${ok ? "var(--green)" : "var(--red)"}">${ok ? "Chính xác! +100 điểm" : "Chưa đúng rồi."}</b> ${esc(q.e || "Đáp án đúng: " + correctAnswers.map((i) => q.c[i]).join(" / ") + ".")}`;
   document.querySelector(".score-live").textContent = `⭐ ${score} điểm`;
-  if (!ok && offerRebirth()) return showMandatoryRebirth();
+  if (runMode === "retry" && phoenixReturn) return startTransition(document.getElementById("nextBtn"));
+  if (maybeTriggerPhoenix()) return showMandatoryRebirth();
   startTransition(document.getElementById("nextBtn"));
 }
 function submitShort(q) {
@@ -817,7 +936,7 @@ function submitShort(q) {
     ? String(value).trim().toLocaleLowerCase("en").replace(/[^a-z0-9]/g, "")
     : String(value).trim().replace(/\s+/g, "").replace(/,/g, ".").toLocaleLowerCase("vi");
   if (!field.value.trim()) { field.focus(); return; }
-  locked = true; answered++;
+  locked = true; countQuizAnswer();
   const ok = (Array.isArray(q.a) ? q.a : [q.a]).some((answer) => normalize(answer) === normalize(field.value));
   playAnswerSound(ok);
   if (ok) { score += 100; correctCount++; } else wrongQuestions.push(q);
@@ -826,7 +945,8 @@ function submitShort(q) {
   document.getElementById("submitShort").disabled = true;
   document.getElementById("feedback").innerHTML = `<b style="color:${ok ? "var(--green)" : "var(--red)"}">${ok ? "Chính xác! +100 điểm" : "Chưa đúng rồi."}</b> Đáp án: ${esc(Array.isArray(q.a) ? q.a.join(" / ") : q.a)}${q.e ? ` · ${esc(q.e)}` : ""}`;
   document.querySelector(".score-live").textContent = `⭐ ${score} điểm`;
-  if (!ok && offerRebirth()) return showMandatoryRebirth();
+  if (runMode === "retry" && phoenixReturn) return startTransition(document.getElementById("nextBtn"));
+  if (maybeTriggerPhoenix()) return showMandatoryRebirth();
   startTransition(document.getElementById("nextBtn"));
 }
 function showResult() {
@@ -905,7 +1025,7 @@ function renderAllAnswers(targetId, questions = allQuestions) {
   el.innerHTML = questions
     .map(
       (q, i) =>
-        `<article class="review-item"><h3>C&#226;u ${i + 1} &#183; ${esc(q.t)}</h3><p>${esc(q.q)}</p>${renderQuestionImage(q, "Hình minh họa câu hỏi")}${q.type === "tf" ? `<ol>${q.items.map((item, j) => `<li>${esc(item.text)} <strong>${q.answers[j] === 0 ? "&#272;&#250;ng" : "Sai"}</strong></li>`).join("")}</ol>` : q.type === "short" ? `<p class="review-correct"><b>Đáp án:</b> ${esc(Array.isArray(q.a) ? q.a.join(" / ") : q.a)}</p>` : `<ol type="A">${q.c.map((choice, j) => { const right = (Array.isArray(q.a) ? q.a : [q.a]).includes(j); return `<li class="${right ? "review-correct" : ""}">${renderChoiceContent(choice)} ${right ? "<strong>← Đáp án</strong>" : ""}</li>`; }).join("")}</ol>`}</article>`,
+        `<article class="review-item"><h3>C&#226;u ${i + 1} &#183; ${esc(q.t)}</h3><p>${esc(q.q)}</p>${renderQuestionImage(q, "Hình minh họa câu hỏi")}${q.type === "tf" ? `<ol>${q.items.map((item, j) => `<li>${esc(item.text)} <strong>${currentSubject === "history" ? "&#10140; " : ""}${q.answers[j] === 0 ? "&#272;&#250;ng" : "Sai"}</strong></li>`).join("")}</ol>` : q.type === "short" ? `<p class="review-correct"><b>Đáp án:</b> ${esc(Array.isArray(q.a) ? q.a.join(" / ") : q.a)}</p>` : `<ol type="A">${q.c.map((choice, j) => { const right = (Array.isArray(q.a) ? q.a : [q.a]).includes(j); return `<li class="${right ? "review-correct" : ""}">${currentSubject === "history" && right ? `<u>${renderChoiceContent(choice)}</u>` : renderChoiceContent(choice)} ${right ? "<strong>← Đáp án</strong>" : ""}</li>`; }).join("")}</ol>`}</article>`,
     )
     .join("");
 }

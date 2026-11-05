@@ -4,20 +4,32 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="theme-color" content="#f7f8fc" />
-    <title>Ôn tập GK1 · Tin học 12 và Sinh học 12</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>Ôn tập lớp 12 · Tin học, Sinh học, Tiếng Anh và Lịch sử</title>
+    <link rel="stylesheet" href="style.css?v=history-course-1" />
   </head>
   <body>
     <div class="app">
       <header class="top">
-        <button class="back-btn" id="backButton" type="button" aria-label="Quay lại trang trước" title="Quay lại trang trước" disabled>← <span>Quay lại</span></button>
+        <button
+          class="back-btn"
+          id="backButton"
+          type="button"
+          aria-label="Quay lại trang trước"
+          title="Quay lại trang trước"
+          disabled
+        >
+          ← <span>Quay lại</span>
+        </button>
         <div class="logo">12</div>
         <div class="brand">
           Lớp học số<small>TIN HỌC 12 · ÔN TẬP GIỮA KÌ</small>
         </div>
         <div class="top-right">
           <span class="pill">✦ Học theo cách của bạn</span>
-          <button class="profile-trigger" id="nameTrigger" type="button"><span class="avatar">🧑‍🎓</span><span id="profileLabel">Nhập tên</span></button>
+          <button class="profile-trigger" id="nameTrigger" type="button">
+            <span class="avatar">🧑‍🎓</span
+            ><span id="profileLabel">Nhập tên</span>
+          </button>
         </div>
       </header>
       <div class="layout">
@@ -25,26 +37,54 @@
           <div class="eyebrow">KHÔNG GIAN HỌC TẬP</div>
           <nav class="nav">
             <div class="overview-nav-group">
-              <button class="active" data-page="home"><span class="ico">⌂</span>Tổng quan</button>
+              <button class="active" data-page="home">
+                <span class="ico">⌂</span>Tổng quan
+              </button>
               <div class="subject-nav" aria-label="Chọn môn học">
-                <button type="button" data-subject="tin"><span>💻</span>Tin học 12</button>
-                <button type="button" data-subject="bio"><span>🧬</span>Sinh học 12</button>
-                <button type="button" data-subject="en"><span>🇬🇧</span>Tiếng Anh 12</button>
+                <button type="button" data-subject="tin">
+                  <span>💻</span>Tin học 12
+                </button>
+                <button type="button" data-subject="bio">
+                  <span>🧬</span>Sinh học 12
+                </button>
+                <button type="button" data-subject="en">
+                  <span>🇬🇧</span>Tiếng Anh 12
+                </button>
+                <button type="button" data-subject="history">
+                  <span>🏛️</span>Lịch sử 12
+                </button>
               </div>
             </div>
             <div id="courseNav" class="course-nav" hidden>
               <div class="course-nav-title" id="courseNavTitle">ÔN TẬP GK1</div>
-              <button data-page="course"><span class="ico">⌂</span>Môn học</button>
-              <button data-page="vocabulary" id="vocabularyNav" hidden><span class="ico">📚</span>Từ vựng Unit 1–3</button>
-              <button data-page="library"><span class="ico">▤</span>Ngân hàng câu hỏi</button>
-              <button data-page="practice"><span class="ico">✎</span>Hỏi & ôn bài</button>
-              <button data-page="quiz"><span class="ico">⚡</span>Thử thách quiz</button>
-              <button data-page="ranking" id="rankNav"><span class="ico">🏆</span>Bảng xếp hạng</button>
-              <button data-page="answers" id="answersNav" hidden><span class="ico">📖</span>Đáp án</button>
+              <button data-page="course">
+                <span class="ico">⌂</span>Môn học
+              </button>
+              <button data-page="vocabulary" id="vocabularyNav" hidden>
+                <span class="ico">📚</span>Từ vựng Unit 1–3
+              </button>
+              <button data-page="library">
+                <span class="ico">▤</span>Ngân hàng câu hỏi
+              </button>
+              <button data-page="practice">
+                <span class="ico">✎</span>Hỏi & ôn bài
+              </button>
+              <button data-page="quiz">
+                <span class="ico">⚡</span>Thử thách quiz
+              </button>
+              <button data-page="ranking" id="rankNav">
+                <span class="ico">🏆</span>Bảng xếp hạng
+              </button>
+              <button data-page="answers" id="answersNav" hidden>
+                <span class="ico">📖</span>Đáp án
+              </button>
             </div>
             <div class="admin-nav-group" id="adminNavGroup" hidden>
               <div class="course-nav-title">QU&#7842;N TR&#7882; VI&#202;N</div>
-              <button data-page="adminUsers" id="adminUsersNav"><span class="ico">&#9817;</span>T&#224;i kho&#7843;n ng&#432;&#7901;i d&#249;ng</button>
+              <button data-page="adminUsers" id="adminUsersNav">
+                <span class="ico">&#9817;</span>T&#224;i kho&#7843;n
+                ng&#432;&#7901;i d&#249;ng
+              </button>
             </div>
           </nav>
           <div class="side-note" id="sideNote" hidden>
@@ -54,23 +94,79 @@
         </aside>
         <main class="main">
           <section id="home" class="page show">
-            <div class="section-head course-heading"><div><h2>Môn học</h2><p>Chọn một môn để mở không gian ôn tập riêng.</p></div></div>
+            <div class="section-head course-heading">
+              <div>
+                <h2>Môn học</h2>
+                <p>Chọn một môn để mở không gian ôn tập riêng.</p>
+              </div>
+            </div>
             <div class="course-grid" id="courseGrid">
-              <article class="course-card course-tin"><div class="course-icon">💻</div><div><span class="course-kicker">ÔN TẬP GIỮA KÌ 1</span><h2>Tin học 12</h2><p>90 câu · Quiz, ôn bài và bảng xếp hạng riêng</p></div><button type="button" class="primary" data-subject="tin">Vào môn học →</button></article>
-              <article class="course-card course-bio"><div class="course-icon">🧬</div><div><span class="course-kicker">ÔN TẬP GIỮA KÌ 1</span><h2>Sinh học 12</h2><p>74 câu · 50 trắc nghiệm, 10 nhóm đúng/sai, 14 câu trả lời ngắn</p></div><button type="button" class="primary" data-subject="bio">Vào môn học →</button></article>
-              <article class="course-card course-en"><div class="course-icon">🇬🇧</div><div><span class="course-kicker">ÔN TẬP UNIT 1–3</span><h2>Tiếng Anh 12</h2><p>84 câu · Từ vựng, ngữ pháp, điền đáp án và đề tổng hợp</p></div><button type="button" class="primary" data-subject="en">Vào môn học →</button></article>
+              <article class="course-card course-tin">
+                <div class="course-icon">💻</div>
+                <div>
+                  <span class="course-kicker">ÔN TẬP GIỮA KÌ 1</span>
+                  <h2>Tin học 12</h2>
+                  <p>90 câu · Quiz, ôn bài và bảng xếp hạng riêng</p>
+                </div>
+                <button type="button" class="primary" data-subject="tin">
+                  Vào môn học →
+                </button>
+              </article>
+              <article class="course-card course-bio">
+                <div class="course-icon">🧬</div>
+                <div>
+                  <span class="course-kicker">ÔN TẬP GIỮA KÌ 1</span>
+                  <h2>Sinh học 12</h2>
+                  <p>
+                    74 câu · 50 trắc nghiệm, 10 nhóm đúng/sai, 14 câu trả lời
+                    ngắn
+                  </p>
+                </div>
+                <button type="button" class="primary" data-subject="bio">
+                  Vào môn học →
+                </button>
+              </article>
+              <article class="course-card course-en">
+                <div class="course-icon">🇬🇧</div>
+                <div>
+                  <span class="course-kicker">ÔN TẬP UNIT 1–3</span>
+                  <h2>Tiếng Anh 12</h2>
+                  <p>84 câu · Từ vựng, ngữ pháp, điền đáp án và đề tổng hợp</p>
+                </div>
+                <button type="button" class="primary" data-subject="en">
+                  Vào môn học →
+                </button>
+              </article>
+              <article class="course-card course-history">
+                <div class="course-icon">🏛️</div>
+                <div>
+                  <span class="course-kicker">ÔN TẬP GIỮA KÌ 1</span>
+                  <h2>Lịch sử 12</h2>
+                  <p>65 câu · 60 trắc nghiệm, 5 nhóm đúng/sai</p>
+                </div>
+                <button type="button" class="primary" data-subject="history">
+                  Vào môn học →
+                </button>
+              </article>
             </div>
           </section>
           <section id="course" class="page">
             <div class="active-course" id="activeCourseLabel"></div>
             <section class="hero">
               <div class="tag" id="welcomeTag">CHÀO MỪNG BẠN TRỞ LẠI 👋</div>
-              <h1>Học chắc kiến thức.<br>Vào quiz là tự tin.</h1>
-              <p>Ôn tập theo từng chủ đề, hỏi nhanh điều bạn chưa hiểu và thử sức với quiz tính điểm.</p>
+              <h1>Học chắc kiến thức.<br />Vào quiz là tự tin.</h1>
+              <p>
+                Ôn tập theo từng chủ đề, hỏi nhanh điều bạn chưa hiểu và thử sức
+                với quiz tính điểm.
+              </p>
               <div class="hero-stats">
-                <div class="stat"><b id="totalStat">0</b><span>CÂU ÔN TẬP</span></div>
+                <div class="stat">
+                  <b id="totalStat">0</b><span>CÂU ÔN TẬP</span>
+                </div>
                 <div class="stat"><b>04</b><span>CHỦ ĐỀ CHÍNH</span></div>
-                <div class="stat"><b id="bestStat">—</b><span>ĐIỂM CAO NHẤT</span></div>
+                <div class="stat">
+                  <b id="bestStat">—</b><span>ĐIỂM CAO NHẤT</span>
+                </div>
               </div>
             </section>
             <div class="section-head">
@@ -121,14 +217,40 @@
                 <p>
                   Trả lời nhanh, tích lũy điểm và xem kết quả ngay sau mỗi câu.
                 </p>
-                <span><button id="launchQuizButton" type="button">Bắt đầu chơi&nbsp; →</button></span>
-                <button class="reset-quiz-btn" id="resetQuiz" type="button">↺ Đặt lại từ câu 1</button>
+                <span
+                  ><button id="launchQuizButton" type="button">
+                    Bắt đầu chơi&nbsp; →
+                  </button></span
+                >
+                <button class="reset-quiz-btn" id="resetQuiz" type="button">
+                  ↺ Đặt lại từ câu 1
+                </button>
               </div>
             </div>
           </section>
           <section id="vocabulary" class="page">
-            <div class="section-head"><div><h2>Kho từ vựng Unit 1–3</h2><p>Trọn bộ từ đơn, cụm từ và họ từ trong tài liệu ôn tập, kèm phiên âm và nghĩa tiếng Việt.</p></div><span class="subtle" id="vocabularyCount"></span></div>
-            <div class="vocab-tools"><input id="vocabularySearch" type="search" placeholder="Tìm từ, phiên âm hoặc nghĩa tiếng Việt..."><select id="vocabularyUnit"><option value="all">Tất cả Unit</option><option value="Unit 1">Unit 1 · Life Stories We Admire</option><option value="Unit 2">Unit 2 · A Multicultural World</option><option value="Unit 3">Unit 3 · Green Living</option></select></div>
+            <div class="section-head">
+              <div>
+                <h2>Kho từ vựng Unit 1–3</h2>
+                <p>
+                  Trọn bộ từ đơn, cụm từ và họ từ trong tài liệu ôn tập, kèm
+                  phiên âm và nghĩa tiếng Việt.
+                </p>
+              </div>
+              <span class="subtle" id="vocabularyCount"></span>
+            </div>
+            <div class="vocab-tools">
+              <input
+                id="vocabularySearch"
+                type="search"
+                placeholder="Tìm từ, phiên âm hoặc nghĩa tiếng Việt..."
+              /><select id="vocabularyUnit">
+                <option value="all">Tất cả Unit</option>
+                <option value="Unit 1">Unit 1 · Life Stories We Admire</option>
+                <option value="Unit 2">Unit 2 · A Multicultural World</option>
+                <option value="Unit 3">Unit 3 · Green Living</option>
+              </select>
+            </div>
             <div class="vocab-groups" id="vocabularyGroups"></div>
           </section>
           <section id="library" class="page">
@@ -200,85 +322,344 @@
             </div>
             <div class="cards" id="studyCards"></div>
           </section>
-          <section id="quiz" class="page"><div class="section-head"><div><h2>Ch&#x01A1;i to&#x00E0;n b&#x1ED9; c&#x00E2;u h&#x1ECF;i</h2><p>&#x0110;&#x00FA;ng/sai v&#x00E0; tr&#x1EAF;c nghi&#x1EC7;m &#x0111;&#x01B0;&#x1EE3;c x&#x00E1;o chung trong m&#x1ED9;t l&#x01B0;&#x1EE3;t ch&#x01A1;i.</p></div></div><div class="cards"><div class="card"><div class="topic-icon">&#127919;</div><h3>To&#x00E0;n b&#x1ED9; &#x0111;&#x1EC1; c&#x01B0;&#x01A1;ng</h3><p>Ch&#417;i h&#7871;t c&#225;c nh&#243;m &#273;&#250;ng/sai (4 &#253; m&#7897;t nh&#243;m) c&#249;ng t&#7845;t c&#7843; c&#226;u tr&#7855;c nghi&#7879;m trong file &#244;n t&#7853;p.</p><div class="topic-foot"><span id="quizTotal">To&#x00E0;n b&#x1ED9; ng&#x00E2;n h&#x00E0;ng</span><button class="link-btn" id="fullQuiz">B&#x1EAF;t &#x0111;&#x1EA7;u ch&#x01A1;i &#x2192;</button></div></div></div><div class="tool" style="margin-top:15px"><h3>&#127942; Th&#x00E0;nh t&#x00ED;ch g&#x1EA7;n &#x0111;&#x00E2;y</h3><p class="desc" id="historyText">Ch&#x01B0;a c&#243; l&#432;&#7907;t ch&#417;i n&#224;o. Ho&#224;n th&#224;nh quiz &#273;&#7847;u ti&#234;n &#273;&#7875; ghi l&#7841;i th&#224;nh t&#237;ch.</p><div id="historyList"></div></div></section>
+          <section id="quiz" class="page">
+            <div class="section-head">
+              <div>
+                <h2>Ch&#x01A1;i to&#x00E0;n b&#x1ED9; c&#x00E2;u h&#x1ECF;i</h2>
+                <p>
+                  &#x0110;&#x00FA;ng/sai v&#x00E0; tr&#x1EAF;c nghi&#x1EC7;m
+                  &#x0111;&#x01B0;&#x1EE3;c x&#x00E1;o chung trong m&#x1ED9;t
+                  l&#x01B0;&#x1EE3;t ch&#x01A1;i.
+                </p>
+              </div>
+            </div>
+            <div class="cards">
+              <div class="card">
+                <div class="topic-icon">&#127919;</div>
+                <h3>
+                  To&#x00E0;n b&#x1ED9; &#x0111;&#x1EC1; c&#x01B0;&#x01A1;ng
+                </h3>
+                <p>
+                  Ch&#417;i h&#7871;t c&#225;c nh&#243;m &#273;&#250;ng/sai (4
+                  &#253; m&#7897;t nh&#243;m) c&#249;ng t&#7845;t c&#7843;
+                  c&#226;u tr&#7855;c nghi&#7879;m trong file &#244;n t&#7853;p.
+                </p>
+                <div class="topic-foot">
+                  <span id="quizTotal"
+                    >To&#x00E0;n b&#x1ED9; ng&#x00E2;n h&#x00E0;ng</span
+                  ><button class="link-btn" id="fullQuiz">
+                    B&#x1EAF;t &#x0111;&#x1EA7;u ch&#x01A1;i &#x2192;
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="tool" style="margin-top: 15px">
+              <h3>
+                &#127942; Th&#x00E0;nh t&#x00ED;ch g&#x1EA7;n &#x0111;&#x00E2;y
+              </h3>
+              <p class="desc" id="historyText">
+                Ch&#x01B0;a c&#243; l&#432;&#7907;t ch&#417;i n&#224;o.
+                Ho&#224;n th&#224;nh quiz &#273;&#7847;u ti&#234;n &#273;&#7875;
+                ghi l&#7841;i th&#224;nh t&#237;ch.
+              </p>
+              <div id="historyList"></div>
+            </div>
+          </section>
           <section id="ranking" class="page">
             <div class="section-head">
-              <div><h2>Bảng xếp hạng</h2><p>Xếp theo điểm cao nhất sau khi hoàn thành toàn bộ câu hỏi.</p></div>
-              <button class="secondary" id="clearRanking" type="button" hidden>Xóa bảng</button>
+              <div>
+                <h2>Bảng xếp hạng</h2>
+                <p>
+                  Xếp theo điểm cao nhất sau khi hoàn thành toàn bộ câu hỏi.
+                </p>
+              </div>
+              <button class="secondary" id="clearRanking" type="button" hidden>
+                Xóa bảng
+              </button>
             </div>
             <p class="rank-note" id="leaderboardStatus" aria-live="polite"></p>
             <div class="leaderboard-wrap">
               <table class="leaderboard">
-                <thead><tr><th>Hạng</th><th>Người chơi</th><th>ID</th><th>Điểm cao nhất</th><th>Tỉ lệ</th><th>Ngày đạt</th></tr></thead>
+                <thead>
+                  <tr>
+                    <th>Hạng</th>
+                    <th>Người chơi</th>
+                    <th>ID</th>
+                    <th>Điểm cao nhất</th>
+                    <th>Tỉ lệ</th>
+                    <th>Ngày đạt</th>
+                  </tr>
+                </thead>
                 <tbody id="leaderboardBody"></tbody>
               </table>
-              <div class="empty" id="leaderboardEmpty">Chưa có điểm nào. Hãy chơi một lượt quiz để ghi tên lên bảng.</div>
+              <div class="empty" id="leaderboardEmpty">
+                Chưa có điểm nào. Hãy chơi một lượt quiz để ghi tên lên bảng.
+              </div>
             </div>
-            
           </section>
           <section id="answers" class="page">
-            <div class="section-head"><div><h2>Đáp án đề cương</h2><p>Dành cho quản trị viên.</p></div></div>
+            <div class="section-head">
+              <div>
+                <h2>Đáp án đề cương</h2>
+                <p>Dành cho quản trị viên.</p>
+              </div>
+            </div>
             <div id="adminAnswers" class="answer-review"></div>
           </section>
           <section id="adminUsers" class="page">
-            <div class="section-head"><div><h2>Thông tin người đăng ký</h2><p>Chỉ quản trị viên xem được. Mật khẩu không được lưu hoặc hiển thị tại đây.</p></div><button class="secondary" id="refreshUsers" type="button">Tải lại</button></div>
-            <p class="rank-note">Qu&#7843;n tr&#7883; vi&#234;n xem &#273;&#432;&#7907;c h&#7885; t&#234;n, l&#7899;p, ID, email v&#224; UID. Firebase kh&#244;ng cho ph&#233;p xem l&#7841;i m&#7853;t kh&#7849;u; m&#7853;t kh&#7849;u kh&#244;ng &#273;&#432;&#7907;c l&#432;u trong h&#7891; s&#417;.</p><p id="adminUsersStatus" class="rank-note" aria-live="polite"></p>
-            <div class="leaderboard-wrap admin-users-wrap"><table class="leaderboard admin-users-table"><thead><tr><th>ID</th><th>Họ và tên</th><th>Lớp</th><th>Email</th><th>UID tài khoản</th><th>Ngày đăng ký</th><th>Thao t&#225;c</th></tr></thead><tbody id="adminUsersBody"></tbody></table><div class="empty" id="adminUsersEmpty" hidden>Chưa có tài khoản nào.</div></div>
+            <div class="section-head">
+              <div>
+                <h2>Thông tin người đăng ký</h2>
+                <p>
+                  Chỉ quản trị viên xem được. Mật khẩu không được lưu hoặc hiển
+                  thị tại đây.
+                </p>
+              </div>
+              <button class="secondary" id="refreshUsers" type="button">
+                Tải lại
+              </button>
+            </div>
+            <p class="rank-note">
+              Qu&#7843;n tr&#7883; vi&#234;n xem &#273;&#432;&#7907;c h&#7885;
+              t&#234;n, l&#7899;p, ID, email v&#224; UID. Firebase kh&#244;ng
+              cho ph&#233;p xem l&#7841;i m&#7853;t kh&#7849;u; m&#7853;t
+              kh&#7849;u kh&#244;ng &#273;&#432;&#7907;c l&#432;u trong h&#7891;
+              s&#417;.
+            </p>
+            <p id="adminUsersStatus" class="rank-note" aria-live="polite"></p>
+            <div class="leaderboard-wrap admin-users-wrap">
+              <table class="leaderboard admin-users-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Họ và tên</th>
+                    <th>Lớp</th>
+                    <th>Email</th>
+                    <th>UID tài khoản</th>
+                    <th>Ngày đăng ký</th>
+                    <th>Thao t&#225;c</th>
+                  </tr>
+                </thead>
+                <tbody id="adminUsersBody"></tbody>
+              </table>
+              <div class="empty" id="adminUsersEmpty" hidden>
+                Chưa có tài khoản nào.
+              </div>
+            </div>
           </section>
           <div class="footer">
-            Nội dung ôn tập được tổng hợp từ ngân hàng câu hỏi Tin học và tài liệu
-            Sinh học 12.<br />Kết quả được lưu theo từng môn học.
+            Nội dung ôn tập được tổng hợp từ ngân hàng câu hỏi Tin học và tài
+            liệu Sinh học 12.<br />Kết quả được lưu theo từng môn học.
           </div>
         </main>
       </div>
     </div>
     <div class="modal" id="profileModal" aria-hidden="true">
       <div class="auth-panel">
-        <div class="quiz-top"><span class="quiz-brand">T&#192;I KHO&#7842;N H&#7884;C SINH</span><button class="close" id="profileClose" type="button" aria-label="&#272;&#243;ng">&times;</button></div>
+        <div class="quiz-top">
+          <span class="quiz-brand">T&#192;I KHO&#7842;N H&#7884;C SINH</span
+          ><button
+            class="close"
+            id="profileClose"
+            type="button"
+            aria-label="&#272;&#243;ng"
+          >
+            &times;
+          </button>
+        </div>
         <div id="authForms">
-          <div class="auth-tabs"><button type="button" class="active" data-auth-view="register">&#272;&#259;ng k&#253;</button><button type="button" data-auth-view="login">&#272;&#259;ng nh&#7853;p</button></div>
+          <div class="auth-tabs">
+            <button type="button" class="active" data-auth-view="register">
+              &#272;&#259;ng k&#253;</button
+            ><button type="button" data-auth-view="login">
+              &#272;&#259;ng nh&#7853;p
+            </button>
+          </div>
           <form id="registerForm" class="auth-form">
-            <p class="auth-intro">T&#7841;o t&#224;i kho&#7843;n &#273;&#7875; l&#432;u h&#7891; s&#417; v&#224; ti&#7871;p t&#7909;c b&#224;i l&#224;m tr&#234;n thi&#7871;t b&#7883; n&#224;y.</p>
-            <label for="nameInput">H&#7885; v&#224; t&#234;n</label><input id="nameInput" maxlength="60" autocomplete="name" required>
-            <label for="classInput">L&#7899;p</label><input id="classInput" maxlength="20" placeholder="V&#237; d&#7909;: 12A1" autocomplete="organization-title" required>
-            <label for="idInput">ID h&#7885;c sinh (0001&#8211;1000)</label><input id="idInput" inputmode="numeric" maxlength="4" pattern="[0-9]{1,4}" placeholder="V&#237; d&#7909;: 0001" autocomplete="off" required>
-            <label for="registerEmail">Email</label><input id="registerEmail" type="email" autocomplete="email" required>
-            <label for="registerPassword">M&#7853;t kh&#7849;u</label><div class="password-field"><input id="registerPassword" type="password" minlength="6" autocomplete="new-password" required><button class="password-toggle" type="button" data-password-toggle="registerPassword" aria-label="Hi&#7875;n m&#7853;t kh&#7849;u" aria-pressed="false">Hi&#7875;n</button></div>
-            <button class="primary auth-submit" type="submit">T&#7841;o t&#224;i kho&#7843;n</button>
-            <button class="secondary auth-submit" id="changeAuthAccount" type="button" hidden>&#272;&#259;ng xu&#7845;t &#273;&#7875; &#273;&#7893;i / &#273;&#259;ng nh&#7853;p t&#224;i kho&#7843;n kh&#225;c</button>
+            <p class="auth-intro">
+              T&#7841;o t&#224;i kho&#7843;n &#273;&#7875; l&#432;u h&#7891;
+              s&#417; v&#224; ti&#7871;p t&#7909;c b&#224;i l&#224;m tr&#234;n
+              thi&#7871;t b&#7883; n&#224;y.
+            </p>
+            <label for="nameInput">H&#7885; v&#224; t&#234;n</label
+            ><input
+              id="nameInput"
+              maxlength="60"
+              autocomplete="name"
+              required
+            />
+            <label for="classInput">L&#7899;p</label
+            ><input
+              id="classInput"
+              maxlength="20"
+              placeholder="V&#237; d&#7909;: 12A1"
+              autocomplete="organization-title"
+              required
+            />
+            <label for="idInput">ID h&#7885;c sinh (0001&#8211;1000)</label
+            ><input
+              id="idInput"
+              inputmode="numeric"
+              maxlength="4"
+              pattern="[0-9]{1,4}"
+              placeholder="V&#237; d&#7909;: 0001"
+              autocomplete="off"
+              required
+            />
+            <label for="registerEmail">Email</label
+            ><input
+              id="registerEmail"
+              type="email"
+              autocomplete="email"
+              required
+            />
+            <label for="registerPassword">M&#7853;t kh&#7849;u</label>
+            <div class="password-field">
+              <input
+                id="registerPassword"
+                type="password"
+                minlength="6"
+                autocomplete="new-password"
+                required
+              /><button
+                class="password-toggle"
+                type="button"
+                data-password-toggle="registerPassword"
+                aria-label="Hi&#7875;n m&#7853;t kh&#7849;u"
+                aria-pressed="false"
+              >
+                Hi&#7875;n
+              </button>
+            </div>
+            <button class="primary auth-submit" type="submit">
+              T&#7841;o t&#224;i kho&#7843;n
+            </button>
+            <button
+              class="secondary auth-submit"
+              id="changeAuthAccount"
+              type="button"
+              hidden
+            >
+              &#272;&#259;ng xu&#7845;t &#273;&#7875; &#273;&#7893;i /
+              &#273;&#259;ng nh&#7853;p t&#224;i kho&#7843;n kh&#225;c
+            </button>
           </form>
           <form id="loginForm" class="auth-form" hidden>
-            <p class="auth-intro">&#272;&#259;ng nh&#7853;p &#273;&#7875; v&#224;o kh&#244;ng gian &#244;n t&#7853;p v&#224; xem b&#7843;ng x&#7871;p h&#7841;ng.</p>
-            <label for="loginEmail">Email</label><input id="loginEmail" type="email" autocomplete="email" required>
-            <label for="loginPassword">M&#7853;t kh&#7849;u</label><div class="password-field"><input id="loginPassword" type="password" autocomplete="current-password" required><button class="password-toggle" type="button" data-password-toggle="loginPassword" aria-label="Hi&#7875;n m&#7853;t kh&#7849;u" aria-pressed="false">Hi&#7875;n</button></div>
-            <button class="primary auth-submit" type="submit">&#272;&#259;ng nh&#7853;p</button>
+            <p class="auth-intro">
+              &#272;&#259;ng nh&#7853;p &#273;&#7875; v&#224;o kh&#244;ng gian
+              &#244;n t&#7853;p v&#224; xem b&#7843;ng x&#7871;p h&#7841;ng.
+            </p>
+            <label for="loginEmail">Email</label
+            ><input
+              id="loginEmail"
+              type="email"
+              autocomplete="email"
+              required
+            />
+            <label for="loginPassword">M&#7853;t kh&#7849;u</label>
+            <div class="password-field">
+              <input
+                id="loginPassword"
+                type="password"
+                autocomplete="current-password"
+                required
+              /><button
+                class="password-toggle"
+                type="button"
+                data-password-toggle="loginPassword"
+                aria-label="Hi&#7875;n m&#7853;t kh&#7849;u"
+                aria-pressed="false"
+              >
+                Hi&#7875;n
+              </button>
+            </div>
+            <button class="primary auth-submit" type="submit">
+              &#272;&#259;ng nh&#7853;p
+            </button>
           </form>
-          <p class="auth-error" id="authError" role="alert" aria-live="polite"></p>
-          <button type="button" class="secondary auth-retry" id="authRetry" hidden>Quay l&#7841;i s&#7917;a th&#244;ng tin</button>
+          <p
+            class="auth-error"
+            id="authError"
+            role="alert"
+            aria-live="polite"
+          ></p>
+          <button
+            type="button"
+            class="secondary auth-retry"
+            id="authRetry"
+            hidden
+          >
+            Quay l&#7841;i s&#7917;a th&#244;ng tin
+          </button>
         </div>
         <section id="accountView" hidden>
-          <p class="auth-intro">B&#7841;n &#273;ang &#273;&#259;ng nh&#7853;p b&#7857;ng <strong id="accountEmail"></strong>.</p>
+          <p class="auth-intro">
+            B&#7841;n &#273;ang &#273;&#259;ng nh&#7853;p b&#7857;ng
+            <strong id="accountEmail"></strong>.
+          </p>
           <p id="accountDetails" class="account-details"></p>
           <form id="adminUpgradeForm" class="admin-upgrade" hidden>
-            <label for="promotionCode">M&#227; th&#259;ng c&#7845;p qu&#7843;n tr&#7883; vi&#234;n</label>
-            <input id="promotionCode" type="password" autocomplete="off" required>
-            <button class="secondary auth-submit" id="adminUpgradeButton" type="submit">Th&#259;ng c&#7845;p l&#224;m qu&#7843;n tr&#7883; vi&#234;n</button>
-            <p id="adminUpgradeStatus" class="auth-error" role="status" aria-live="polite"></p>
+            <label for="promotionCode"
+              >M&#227; th&#259;ng c&#7845;p qu&#7843;n tr&#7883;
+              vi&#234;n</label
+            >
+            <input
+              id="promotionCode"
+              type="password"
+              autocomplete="off"
+              required
+            />
+            <button
+              class="secondary auth-submit"
+              id="adminUpgradeButton"
+              type="submit"
+            >
+              Th&#259;ng c&#7845;p l&#224;m qu&#7843;n tr&#7883; vi&#234;n
+            </button>
+            <p
+              id="adminUpgradeStatus"
+              class="auth-error"
+              role="status"
+              aria-live="polite"
+            ></p>
           </form>
-          <p id="adminUpgradeBadge" class="account-details admin-badge" hidden>B&#7841;n &#273;ang l&#224; qu&#7843;n tr&#7883; vi&#234;n.</p>
-          <button class="secondary auth-submit" id="logoutButton" type="button">&#272;&#259;ng xu&#7845;t</button>
+          <p id="adminUpgradeBadge" class="account-details admin-badge" hidden>
+            B&#7841;n &#273;ang l&#224; qu&#7843;n tr&#7883; vi&#234;n.
+          </p>
+          <button class="secondary auth-submit" id="logoutButton" type="button">
+            &#272;&#259;ng xu&#7845;t
+          </button>
         </section>
       </div>
     </div>
     <div class="modal" id="adminAuthModal" aria-hidden="true">
       <form class="profile-box" id="adminAuthForm">
-        <div class="quiz-top"><span class="quiz-brand">QU&#x1EA2;N TR&#x1ECA; VI&#xCA;N</span><button class="close" id="adminAuthClose" type="button" aria-label="&#x0110;&#x00F3;ng">×</button></div>
+        <div class="quiz-top">
+          <span class="quiz-brand">QU&#x1EA2;N TR&#x1ECA; VI&#xCA;N</span
+          ><button
+            class="close"
+            id="adminAuthClose"
+            type="button"
+            aria-label="&#x0110;&#x00F3;ng"
+          >
+            ×
+          </button>
+        </div>
         <label for="adminEmail">Email qu&#x1EA3;n tr&#x1ECB; Firebase</label>
-        <input id="adminEmail" type="email" autocomplete="username" required>
+        <input id="adminEmail" type="email" autocomplete="username" required />
         <label for="adminPassword">M&#x1EAD;t kh&#x1EA9;u Firebase</label>
-        <input id="adminPassword" type="password" autocomplete="current-password" required>
+        <input
+          id="adminPassword"
+          type="password"
+          autocomplete="current-password"
+          required
+        />
         <p id="adminAuthError" role="alert"></p>
-        <div class="profile-actions"><button class="primary" id="adminAuthSubmit" type="submit">X&#x00E1;c nh&#x1EAD;n v&#x00E0; x&#x00F3;a b&#x1EA3;ng chung</button></div>
+        <div class="profile-actions">
+          <button class="primary" id="adminAuthSubmit" type="submit">
+            X&#x00E1;c nh&#x1EAD;n v&#x00E0; x&#x00F3;a b&#x1EA3;ng chung
+          </button>
+        </div>
       </form>
     </div>
     <div class="modal" id="quizModal">
@@ -292,8 +673,10 @@
     <script src="questions-mc.js"></script>
     <script src="questions-bio.js?v=bio-tf8-ddsd-2"></script>
     <script src="questions-en.js"></script>
+    <script src="questions-history.js?v=history-bank-2"></script>
     <script src="vocabulary-en.js"></script>
     <script src="firebase-config.js"></script>
-    <script src="script.js?v=quiz-reset-3"></script>
+    <script src="script.js?v=history-course-1"></script>
   </body>
 </html>
+
