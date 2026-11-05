@@ -572,6 +572,11 @@ function startTransition(button) {
   }, 1000);
   transitionTimeout = setTimeout(() => {
     clearTransition();
+    stopActiveAudio();
+    if (maybeTriggerPhoenix()) {
+      showMandatoryRebirth();
+      return;
+    }
     advanceQuestion();
   }, 3000);
 }
@@ -897,7 +902,6 @@ function submitTf(q) {
     startTransition(retryNext);
     return;
   }
-  if (maybeTriggerPhoenix()) return showMandatoryRebirth();
   let next = document.createElement("button");
   next.className = "next-btn";
   next.textContent = "T\u1ef1 chuy\u1ec3n sau 3 gi\u00e2y";
@@ -926,7 +930,6 @@ function choose(a, q) {
     `<b style="color:${ok ? "var(--green)" : "var(--red)"}">${ok ? "Chính xác! +100 điểm" : "Chưa đúng rồi."}</b> ${esc(q.e || "Đáp án đúng: " + correctAnswers.map((i) => q.c[i]).join(" / ") + ".")}`;
   document.querySelector(".score-live").textContent = `⭐ ${score} điểm`;
   if (runMode === "retry" && phoenixReturn) return startTransition(document.getElementById("nextBtn"));
-  if (maybeTriggerPhoenix()) return showMandatoryRebirth();
   startTransition(document.getElementById("nextBtn"));
 }
 function submitShort(q) {
@@ -946,7 +949,6 @@ function submitShort(q) {
   document.getElementById("feedback").innerHTML = `<b style="color:${ok ? "var(--green)" : "var(--red)"}">${ok ? "Chính xác! +100 điểm" : "Chưa đúng rồi."}</b> Đáp án: ${esc(Array.isArray(q.a) ? q.a.join(" / ") : q.a)}${q.e ? ` · ${esc(q.e)}` : ""}`;
   document.querySelector(".score-live").textContent = `⭐ ${score} điểm`;
   if (runMode === "retry" && phoenixReturn) return startTransition(document.getElementById("nextBtn"));
-  if (maybeTriggerPhoenix()) return showMandatoryRebirth();
   startTransition(document.getElementById("nextBtn"));
 }
 function showResult() {
